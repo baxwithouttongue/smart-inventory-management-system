@@ -1,0 +1,16 @@
+# This file stores data about the supplier information.
+supplier_id,supplier_name,contact_person,email,phone
+S001,SupplierA,Chan Wai,chanwai@supplierA.com,+852-2123-4567
+S002,SupplierB,Lee Ming,leeming@supplierB.com,+852-2123-4568
+S003,SupplierC,Wong Ka,wongka@supplierC.com,+852-2123-4569
+S004,SupplierD,Ng Mei,ngmei@supplierD.com,+852-2123-4570
+S005,SupplierE,Ho Man,homan@supplierE.com,+852-2123-4571
+S006,SupplierF,Lam Chi,lamchi@supplierF.com,+852-2123-4572
+S007,SupplierG,Cheung Yan,cheungyan@supplierG.com,+852-2123-4573
+S008,SupplierH,Cheng Lok,chenglok@supplierH.com,+852-2123-4574
+S009,SupplierI,Yeung Kin,yeungkin@supplierI.com,+852-2123-4575
+S010,SupplierJ,Tsang Fai,tsangfai@supplierJ.com,+852-2123-4576
+S011,SupplierK,Leung Ho,leungho@supplierK.com,+852-2123-4577
+S012,SupplierL,Ma Ling,maling@supplierL.com,+852-2123-4578
+S013,SupplierM,Tam Yiu,tamyiu@supplierM.com,+852-2123-4579
+S014,SupplierN,Choi Man,choiman@supplierN.com,+852-2123-4580
