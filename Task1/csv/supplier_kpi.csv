@@ -1,0 +1,8 @@
+# This is the file to define the KPI of the supplier.
+# The supplier Key Performance Indicator (KPI) is based on the return rate of the product.
+KPI% Ranage, Score, Remark
+99%-100%, 5, Very Satisfactory
+97%-98%, 4, Satisfactory
+95%-96%, 3, Average
+91%-94%, 2, Poor
+≤90%, 1, Dissatisfactory
