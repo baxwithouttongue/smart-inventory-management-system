@@ -1,5 +1,3 @@
-# This is the file to define the role of three employees.
-# Each employee has his own password for authentication.
 name, password, role
 Garfield, abc123, Manager
 King, abc456, Supervisor

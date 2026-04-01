@@ -1,4 +1,3 @@
-# This file stores data about the supplier information.
 supplier_id,supplier_name,contact_person,email,phone
 S001,SupplierA,Chan Wai,chanwai@supplierA.com,+852-2123-4567
 S002,SupplierB,Lee Ming,leeming@supplierB.com,+852-2123-4568

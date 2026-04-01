@@ -1,4 +1,3 @@
-# This is the file for storing the information of the products.
 product_id,name,price (HKD),supplier,stock_level,safety_stock,lead_time (days),ordering_cost,holding_cost,quantity_delivered,quantity_returned
 P001,Smartphone (mid-range),4500,SupplierA,120,20,7,3000,16,500,2
 P002,Laptop (basic),7500,SupplierB,80,15,10,3500,23,400,2
@@ -18,5 +17,5 @@ P015,Monitor (24”),1800,SupplierK,100,15,8,1200,16,400,4
 P016,Monitor (32”),3200,SupplierK,80,10,9,1800,20,300,3
 P017,Printer (Inkjet),1300,SupplierL,90,15,8,900,12,350,3
 P018,Printer (Laser),2200,SupplierL,70,10,9,1500,16,280,2
-P019,Power Bank (20,000mAh),400,SupplierM,200,30,5,500,6,700,7
+P019,Power Bank (20000mAh),400,SupplierM,200,30,5,500,6,700,7
 P020,Drone (consumer),5500,SupplierN,40,8,12,4000,20,200,5
