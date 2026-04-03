@@ -1,17 +1,17 @@
 # This is the class for defining all users who will use this system
 # Different roles have different levels of permission to access and control the data
 
-class User:         
-    def __init__(self, name, password, role):
-        self.name = name                # Store the user's name
+class User:                             # Define class for all users. OOP Abstraction and Encapsulation
+    def __init__(self, employee_name, password, role):       # Encapsulate the user's infomation and role
+        self.name = employee_name       # Store the user's name
         self.password = password        # Store the user's password
         self.role = role                # Store the user's role
 
     def authenticate(self, password):   # Check if the entered password matches the stored password
-        return self.passowrd == password
+        return self.passoword == password
     
     def get_name(self):                 # Return the user's name            
-        return self.name    
+        return self.employee_name    
 
     def permission(self, action):       # No permission is allowed to access or control any data
         return False

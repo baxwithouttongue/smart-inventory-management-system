@@ -1,4 +1,4 @@
-name, password, role
+employee_name, password, role
 Garfield, abc123, Manager
 King, abc456, Supervisor
 Boo, abc789, Assistant

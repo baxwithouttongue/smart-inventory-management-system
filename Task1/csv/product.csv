@@ -1,4 +1,4 @@
-product_id,name,price (HKD),supplier,stock_level,safety_stock,lead_time (days),ordering_cost,holding_cost,quantity_delivered,quantity_returned
+product_id,product_name,price (HKD),supplier_name,stock_level,safety_stock,lead_time (days),ordering_cost,holding_cost,quantity_delivered,quantity_returned
 P001,Smartphone (mid-range),4500,SupplierA,120,20,7,3000,16,500,2
 P002,Laptop (basic),7500,SupplierB,80,15,10,3500,23,400,2
 P003,Laptop (gaming),12800,SupplierC,50,10,12,4000,31,300,2
