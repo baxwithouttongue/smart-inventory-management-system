@@ -1,7 +1,7 @@
 # Define the Product class
 
-Class Product:
-    def__init__(self, data):
+class Product:
+    def __init__(self, data):
         self.id = data['product_id']                    # Product id
         self.product_name = data['product_name']        # Product name
         self.price = float(data['price (HKD)'])         # Product price
