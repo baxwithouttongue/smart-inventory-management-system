@@ -9,6 +9,7 @@ This program demonstrates the OOP-based inventory management system with employe
 - supplier.py
 - employee.py
 - inventory.py
+- employee_role.csv
 - products.csv
 - suppliers.csv
 - supplier_KPI.csv
