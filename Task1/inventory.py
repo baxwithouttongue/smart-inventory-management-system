@@ -51,6 +51,19 @@ class SmartInventorySystem:
 
     # User log in authentication
     # if name/password/ = username/password
+    def login(self):
+        while True:                                         # This is to create a loop to ask the Username and Password until a the user input valie information
+            name = input("Username: ").strip().lower()
+            if name != self.users:
+                print("Invalid Username. Please try again.")
+                continue
+            pw = input("Password: ").strip()
+            if pw == self.users[name].password:
+                print("Login Successful!")
+                return self.users[name]
+            else:
+                print("Inccorect password. Please try again.")
+
 
     # System starts
     # Assign each employee identity and their level of access
