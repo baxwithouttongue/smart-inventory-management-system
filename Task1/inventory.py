@@ -52,17 +52,17 @@ class SmartInventorySystem:
     # User log in authentication
     # if name/password/ = username/password
     def login(self):
-        while True:                                         # This is to create a loop to ask the Username and Password until a the user input valie information
-            name = input("Username: ").strip().lower()
-            if name != self.users:
-                print("Invalid Username. Please try again.")
-                continue
-            pw = input("Password: ").strip()
-            if pw == self.users[name].password:
-                print("Login Successful!")
-                return self.users[name]
+        while True:                                             # This is to create a loop to ask the Username and Password until a the user input valid information
+            name = input("Username: ").strip().lower()          # Enter password with spaces removal and lower case text
+            if name != self.users:                              # Check if the username exists in the user dictionary
+                print("Invalid Username. Please try again.")    # Print "Invalid Username and try again" if the user name is not found"
+                continue                                        # Go back to ask again
+            pw = input("Password: ").strip()                    # Ask the passowrd and clean spaces
+            if pw == self.users[name].password:                 # Compare the password with the stored data
+                print("Login Successful!")                      # Print "Login Successful" if it is right
+                return self.users[name]                         # Return the user object
             else:
-                print("Inccorect password. Please try again.")
+                print("Inccorect password. Please try again.")  # Print "Incorrect password and Please try again if it is wrong
 
 
     # System starts
