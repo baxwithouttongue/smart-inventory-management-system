@@ -1,4 +1,4 @@
-employee_name, password, role
-Garfield, abc123, Manager
-King, abc456, Supervisor
-Boo, abc789, Assistant
+employee_name,password,role
+Garfield,abc123,Manager
+King,abc456,Supervisor
+Boo,abc789,Assistant
