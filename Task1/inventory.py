@@ -98,11 +98,29 @@ class SmartInventorySystem:
             if choice == 'update':                              # If a user chooses 'update', call the function to update existing product information
                 self.update_product()
 
-    # Assign each employee identity and their level of access
-
     # Ask user which product to view or view all
     # Find the product by product ID
 
+    def show_products(self):
+        option = input('Enter Product ID to view or 'all' to view all: ')       #Ask for the usser to input 'view single product ID' or 'view all'
+        if option == 'all':                                                     # If the user choose 'all', all product information are shown
+            product_ids = [(prod.id) for prod in self.products]                 # Build a list of all product IDs.                 
+            product_ids.sort()                                                  # Sort the list of product IDs alphabetically
+
+            for pid in product_ids:                             # Create an outer loop to look at each sorted ID
+                for prod in self.products:                      # Create an inner loop to find the product object to match the product ID
+                    if prod.id == pid:                          # If found the matched product ID, then show the product information
+                        self.show_product_details(prod)
+                        break                                   # Once the matched product is found, then break to stop searching
+
+        else:                                                   # Find a single product ID
+            for pro in self.products:                           # Create a sinle loop to check each product ID
+                if prod.id == option:                           # If the product ID is found, show the product detail
+                    self.show_product_details(prod)
+                    break                                       # Break the loop
+            
+            else:
+                print('Product is not found.')                  # If there is no product ID matched after looping, print 'Product is not found'
     # View and show the product detail and print the detail
 
     # Add a new product detail
