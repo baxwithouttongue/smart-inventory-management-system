@@ -121,7 +121,21 @@ class SmartInventorySystem:
             
             else:
                 print('Product is not found.')                  # If there is no product ID matched after looping, print 'Product is not found'
+
     # View and show the product detail and print the detail
+    def show_product_details(self, product):                    # Define show_product_details
+        reorder_point = product.reorder_point()                 # Call the reorder_point method from the product object
+        score = product.supplier_kpi_score()                    # Call the supplier_kpi_score from the product objct
+        supplier_info = self.suppliers.get_supplier(product.supplier_name)      # Fetch full supplier detals from supplier database
+        if product.stock <= reorder_point:                      # Check if the stock is less than or equal to the reorder point
+            alert = '[!] RE-ORDER'                              # If the stock is less than or equal to the reorder point, it shows alert to the user
+        else:                                                   # If the stock level is still above teh reorder point, then the program runs the else block
+            alert = ''                                          # It prints nothing
+        
+        print(f"\nID: {product.id}, Name: {product.product_name}, Price: {product.price} HKD")          # Print the product's ID, name, price in Hong Kong Dollars
+        print(f"Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}")        # Print supplier details: name, contact person, and email
+        print(f"Stock: {product.stock}, Safety Stock: {product.safety_stock}, Lead Time: {product.lead_time} days")    # Print inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
+        print(f"Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}")      # Print delivery and return product quantity information
 
     # Add a new product detail
 
