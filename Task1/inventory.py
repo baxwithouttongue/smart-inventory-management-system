@@ -54,7 +54,7 @@ class SmartInventorySystem:
     def login(self):
         while True:                                             # This is to create a loop to ask the Username and Password until a the user input valid information
             name = input('Username: ').strip().lower()          # Enter password with spaces removal and lower case text
-            if name != self.users:                              # Check if the username exists in the user dictionary
+            if name not in self.users:                          # Check if the username exists in the user dictionary
                 print('Invalid Username. Please try again.')    # Print "Invalid Username and try again" if the user name is not found"
                 continue                                        # Go back to ask again
             pw = input('Password: ').strip()                    # Ask the passowrd and clean spaces
@@ -73,13 +73,30 @@ class SmartInventorySystem:
 
         while True:                                             # To develop a loop to keep asking the user what action to do if the action is not "exit". 
 
-            # Available actions: View, Add, Update the product information
-            # We need to create an empty list for the actions
-            # Permission level accordint to their roles: 
-            # Manager is allowed to do all actions, i.e., add, update, view the product information
-            # Supervisor is allowed to add and view the products
-            # Assistant is only allowed to view the product information
-            # # We need to check the permission if he has the permission to do the action requested
+            print('\nAvailable actions: ')                      # Available actions: View, Add, Update the product information
+            actions = ['view']                                  # Every role is allowed to view the product information
+            if user.permission('add'):                          # Permission level according to their roles: Manager(add, update, view), Supervisor(update and view), Assistant(view only)
+                actions.append('add')                           # We need to create an empty list for the actions
+            if user.permission('update'):
+                actions.append('update')
+            print(f"{', '.join(actions)}, 'or type 'exit'")     # Join three actions with 'comma' which is to separate actions, or tell the user to exit the action
+            
+            choice = input('Choose action: ')
+            if choice == 'exit':                                # If a user chooses 'exit', the system will be ended
+                break
+
+            if choice not in actions:                           # If a user did not type the right word, it goes back to the loop and ask again.
+                print('Invalid choice.')
+                continue
+
+            if choice == 'view':                                # If a user chooses 'view', call the function to show the product information
+                self.show_products()
+            
+            if choice == 'add':                                 # If a user chooses 'add', call the function to add a new product information
+                self.add_new_product()
+
+            if choice == 'update':                              # If a user chooses 'update', call the function to update existing product information
+                self.update_product()
 
     # Assign each employee identity and their level of access
 
