@@ -53,19 +53,34 @@ class SmartInventorySystem:
     # if name/password/ = username/password
     def login(self):
         while True:                                             # This is to create a loop to ask the Username and Password until a the user input valid information
-            name = input("Username: ").strip().lower()          # Enter password with spaces removal and lower case text
+            name = input('Username: ').strip().lower()          # Enter password with spaces removal and lower case text
             if name != self.users:                              # Check if the username exists in the user dictionary
-                print("Invalid Username. Please try again.")    # Print "Invalid Username and try again" if the user name is not found"
+                print('Invalid Username. Please try again.')    # Print "Invalid Username and try again" if the user name is not found"
                 continue                                        # Go back to ask again
-            pw = input("Password: ").strip()                    # Ask the passowrd and clean spaces
+            pw = input('Password: ').strip()                    # Ask the passowrd and clean spaces
             if pw == self.users[name].password:                 # Compare the password with the stored data
-                print("Login Successful!")                      # Print "Login Successful" if it is right
+                print('Login Successful!')                      # Print "Login Successful" if it is right
                 return self.users[name]                         # Return the user object
             else:
-                print("Inccorect password. Please try again.")  # Print "Incorrect password and Please try again if it is wrong
+                print('Inccorect password. Please try again.')  # Print "Incorrect password and Please try again if it is wrong
 
 
     # System starts
+    def start_system(self):                                     # This is where we start the Smart Inventory System
+        print("****** This is the Smart Inventory Login *****") # Welcome message
+        user = self.login()                                     # Call the login function to authenticate the user
+        print(f"\n Welcome {user.get.name()}! [Role: {user.role}]")
+
+        while True:                                             # To develop a loop to keep asking the user what action to do if the action is not "exit". 
+
+            # Available actions: View, Add, Update the product information
+            # We need to create an empty list for the actions
+            # Permission level accordint to their roles: 
+            # Manager is allowed to do all actions, i.e., add, update, view the product information
+            # Supervisor is allowed to add and view the products
+            # Assistant is only allowed to view the product information
+            # # We need to check the permission if he has the permission to do the action requested
+
     # Assign each employee identity and their level of access
 
     # Ask user which product to view or view all
