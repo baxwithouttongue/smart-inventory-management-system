@@ -1,26 +1,25 @@
-# Define the Product class
-
-class Product:
-    def __init__(self, data):
-        self.id = data['product_id'].strip()                        # Product id
-        self.product_name = data['product_name'].strip()            # Product name
-        self.price = float(data['price (HKD)']).strip()             # Product price
-        self.supplier_name = data['supplier_name'].strip()          # Supplier name
-        self.stock = int(data['stock_level']).strip()               # Stock level
-        self.safety_stock = int(data['safety_stock']).strip()       # Safety stock level
-        self.lead_time = int(data['lead_time']).strip()             # Lead time
-        self.ordering_cost = int(data['ordering_cost']).strip()     # Ordering cost
-        self.holding_cost = int(data['holding_cost']).strip()       # Holding cost
-        self.delivered = int(data['quantity_delivered']).strip()    # Quantity delivered
-        self.returned = int(data['quantity_returned']).strip()      # Quantity returned
+# Defines the Product class
+class Product:                                                    # Product class creates a blueprint for creating product objects
+    def __init__(self, data):                                     # Creates a constructor method to initialize the instance attributes of the product class
+        self.id = data['product_id'].strip()                      # Stores the product ID as a string and clean spaces from the beginning and end of a string
+        self.product_name = data['product_name'].strip()          # Stores the product name as a string, and clean spaces from the beginning and end of a string
+        self.price = float(data['price (HKD)'])                   # Stores the product price as a float (decimal number)
+        self.supplier_name = data['supplier_name'].strip()        # Stores the supplier's name as a string, and clean spaces from the beginning and end of the string
+        self.stock = int(data['stock_level'])                     # Stores the current stock quantity as an integer
+        self.safety_stock = int(data['safety_stock'])             # Stores the safety stock quantity as an integer
+        self.lead_time = int(data['lead_time'])                   # Stores the lead time as an integer. This is the days taken between ordering and receiving
+        self.ordering_cost = int(data['ordering_cost'])           # Stores the ordering cost as an integer. This is the purchasing cost per unit of product
+        self.holding_cost = int(data['holding_cost'])             # Stores the holding cost as an integer. This is the cost for storing per unit of product
+        self.delivered = int(data['quantity_delivered'])          # Stores the quantity delivered as an integer. This is the total units delivered
+        self.returned = int(data['quantity_returned'])            # Stores the quantity returned as an integer. This is the total units returned
         self.priority_value = self.price * self.stock
 
-
-    def supplier_kpi_score(self):
-        if self.delivered == 0:                         # In case there is no delivery, we will still calculate the KPI
-            return 100                                  # The supplier's performance should be 100%. No delivery = No returned product = 100% KPI
-        else:                                           # If there is any delivery, we will calculate the KPI based on the returned quantity percentage
-            return (1 - self.returned / self.delivered) * 100
+    
+    def supplier_kpi_score(self):                                 # Defines a method to calculate the performance of the supplier based on just simple returned quantity percentage
+        if self.delivered == 0:                                   # In case there is no delivery, we still calculate the KPI
+            return 100                                            # The supplier's performance should be 100%. No delivery = No returned product = 100% KPI
+        else:                                                     # If there is any delivery, we calculate the supplier's KPI based on the returned quantity percentage
+            return (1 - self.returned / self.delivered) * 100     # 1 - return rate = good rate = supplier's KPI
         
     def reorder_point(self):
         pass

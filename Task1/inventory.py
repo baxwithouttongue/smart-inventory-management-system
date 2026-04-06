@@ -3,7 +3,7 @@
 
 import pandas as pd
 from product import Product
-from employee import Manaager, Supervisor, Assistant
+from employee import Manager, Supervisor, Assistant
 from supplier import SupplierDirectory
 
 class SmartInventorySystem:
@@ -102,7 +102,7 @@ class SmartInventorySystem:
     # Find the product by product ID
 
     def show_products(self):
-        option = input('Enter Product ID to view or 'all' to view all: ')       #Ask for the usser to input 'view single product ID' or 'view all'
+        option = input("Enter Product ID to view or 'all' to view all: ")       #Ask for the usser to input 'view single product ID' or 'view all'
         if option == 'all':                                                     # If the user choose 'all', all product information are shown
             product_ids = [(prod.id) for prod in self.products]                 # Build a list of all product IDs.                 
             product_ids.sort()                                                  # Sort the list of product IDs alphabetically
@@ -184,9 +184,7 @@ class SmartInventorySystem:
             return                                              # Return to stop the function right here
 
         # Show the chosen field
-        print('Editable fields: product_name, price, supplier_name, ' \     
-        'stock_level, safety_stock, lead_time (days), ordering_cost, ' \
-        'holding_cost, quantity_delivered, quantity_returned')
+        print('Editable fields: product_name, price, supplier_name, stock_level, safety_stock, lead_time (days), ordering_cost, holding_cost, quantity_delivered, quantity_returned')
         field = input('Which field do you want to change? ')    # Show which field can be edited / update
         new_value = input('Enter new value: ')                  # Ask which field the user what to change
 

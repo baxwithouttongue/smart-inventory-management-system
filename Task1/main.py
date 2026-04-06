@@ -1,5 +1,4 @@
 # This is the main entry point for the Smart Inventory Management System
-
 # Import the SmartInventorySystem class from inventory.py
 from inventory import SmartInventorySystem
 
