@@ -3,7 +3,7 @@ class Product:                                                    # Product clas
     def __init__(self, data):                                     # Creates a constructor method to initialize the instance attributes of the product class
         self.id = str(data['product_id']).strip()                      # Stores the product ID as a string and clean spaces from the beginning and end of a string
         self.product_name = str(data['product_name']).strip()          # Stores the product name as a string, and clean spaces from the beginning and end of a string
-        self.price = float(str(data['price (HKD)']).strip())                   # Stores the product price as a float (decimal number)
+        self.price = float(str(data['price (hkd)']).strip())                   # Stores the product price as a float (decimal number)
         self.supplier_name = str(data['supplier_name']).strip()        # Stores the supplier's name as a string, and clean spaces from the beginning and end of the string
         self.stock = int(str(data['stock_level']).strip())                     # Stores the current stock quantity as an integer
         self.safety_stock = int(str(data['safety_stock']).strip())             # Stores the safety stock quantity as an integer
