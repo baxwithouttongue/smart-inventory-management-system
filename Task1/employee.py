@@ -26,4 +26,4 @@ class Supervisor(User):                                         # Defines Superv
 
 class Assistant(User):                                          # Defines Assistant subclass which inhertits from User
     def permission(self, action):                               # Defines Assistant's access level
-        return action == "view"                                 # Assistant can only view products and cannot either add or update the product details
+        return action == 'view'                                 # Assistant can only view products and cannot either add or update the product details

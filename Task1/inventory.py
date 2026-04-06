@@ -4,84 +4,112 @@
 import pandas as pd
 from product import Product
 from employee import Manager, Supervisor, Assistant
-from supplier import SupplierDirectory
+from supplier import Supplier, SupplierDirectory
 
-class SmartInventorySystem:
-    def __init__(self):         # Initaliza the system and prepare the data
-        # Set up containers for product's lists, user's and supplier's dictionaries
-        self.users = {}         # Prepare a dictionary to store the user data
-        self.products = []      # Prepare a list to store the product data
-        self.suppliers = {}     # Prepare a dictionary to store supplier data
-        self.prepare_files ()   # Load data from employee, product and supplier files
+# *****************************************************************************
+# **    Main inventory system which manages users, products and suppliers    ** 
+# *****************************************************************************
 
-    def prepare_files(self):
-        employee_roles = pd.read_csv('csv/employee_role.csv')      # Load employee data from employee_role.csv
+class SmartInventorySystem:                                         # Defines the main system class. This is the brain of the inventory management system
+    def __init__(self):                                             # Creates a constructor to initaliza the new inventory system instance
+       
+        # Sets up containers for product's lists, user's and supplier's dictionaries
+        self.users = {}                                             # Creates an empty user dictionary that will store User's identity for later authentication and permission checking
+        self.products = []                                          # Creates an empty product list to store the product data
+        self.suppliers = SupplierDirectory()                        # Creates supplier directory to manage supplier data
+        self.prepare_files ()                                       # Load dall ata from employee, product and supplier files
+
+    def prepare_files(self):                                        # Defines data loading method
+
+        # *************************
+        # **    Load Employees   **
+        # *************************
         
-        for index, row in employee_roles.iterrows():                # Create a loop to read the employee_role.csv line by line
-            role = row['role'].strip()                              # Get the role text and clean spaces at the beginning or the end of the text.
-            employee_name = row [employee_name].strip().lower()     # Get the employee name and clean spaces at the beginning or the end of the text. Convert the text to the lower case.
-            pw = row['password'].strip()                            # Get the password data and clean spaces at the beginning or the end of the text.
+        employee_roles = pd.read_csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
+        employee_roles.columns = employee_roles.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
+        
+        for index, row in employee_roles.iterrows():                # Creates a loop to read the employee_role.csv line by line
+            role = row['role'].strip()                              # Gets user role (Manager, Supervisor, Assistant) and clean spaces
+            employee_name = row['employee_name'].strip().lower()    # Gets the employee name, clean spaces and converts to lowercase
+            pw = row['password'].strip()                            # Gets the password data and clean spaces
             
-            # Check the user employee role
-            if role == 'Manager':
-                self.users[employee_name] = Manager(employee_name, pw, role)
-            elif role == 'Supervisior':
-                self.users[employee_name] = Supervisor(employee_name, pw, role)
-            else:
-                self.users[employee_name] = Assistant(employee_name, pw, role)
+            # Check the user employee role to determine the user type
+            if role == 'Manager':                                                   # Checks for Manager role
+                self.users[employee_name] = Manager(employee_name, pw, role)        # Creates Manager object and stores in users dictionary
+            elif role == 'Supervisor':                                              # Checks for Supervisor role
+                self.users[employee_name] = Supervisor(employee_name, pw, role)     # Creates Supervisor object and stores in users dictionary
+            else:                                                                   # By default, if user is not Manager or Supervisor, he must ba an Assistant
+                self.users[employee_name] = Assistant(employee_name, pw, role)      # Creates Assistant object and stores in a uswers dictionary
 
-        # Load product data from product.csv
-        product_list = pd.read.csv('csv/product.csv')       # Read product data from employee_role.csv
-        
-        for index, row in product_list.iterrows():          # Create a loop to read the product.csv line by line
-            self.product = product(row)
-        
+        # *************************
+        # **    Load Products    **
+        # *************************
 
-        # Load supplier data from supplier.csv
+        product_list = pd.read.csv('csv/product.csv')               # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
+        product_list.columns = product_list.columns.str.lower().str.strip()         # Cleans spaces and converts all column headers to lowercase
 
-        suppliers_info = pd.read_csv('supplier.csv')         # Create a loop to read supplier.csv line by line
+        for index, row in product_list.iterrows():                  # Create a loop to read the product.csv line by line
+            self.products.append(Product(row))                      # Creates Product object to convert every row inside csv to a Product and adds it to the product list
         
-        for index, row in suppliers_info.iterrows():
-            self.suppliers = supplier(
-                row['supplier_name'].strip(),
-                row['contact_person'].strip(),
-                row['email'].strip(),
-                row['phone'].strip()
+        # *************************
+        # **    Load Suppliers   **
+        # *************************
+
+        suppliers_info = pd.read_csv('supplier.csv')                # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
+        suppliers_info.columns = suppliers_info.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
+
+        for index, row in suppliers_info.iterrows():                # Creates a loop to read supplier.csv line by line
+            self.suppliers.add_supplier(                            # Stores and saves every supplier's contact into the SupplierDirectory
+                str(row['supplier_name']).strip(),                  # Ensures the data is treated as text and clean spaces
+                str(row['contact_person']).strip(),                 
+                str(row['email'].strip()).strip(),  
+                str(row['phone']).strip()
             )
 
-    # User log in authentication
-    # if name/password/ = username/password
-    def login(self):
+    # *******************************
+    # **    Login Authentication   **
+    # *******************************
+    
+    def login(self):                                            # Defines login method to manage user authentication
+        
         while True:                                             # This is to create a loop to ask the Username and Password until a the user input valid information
-            name = input('Username: ').strip().lower()          # Enter password with spaces removal and lower case text
-            if name not in self.users:                          # Check if the username exists in the user dictionary
-                print('Invalid Username. Please try again.')    # Print "Invalid Username and try again" if the user name is not found"
-                continue                                        # Go back to ask again
+            
+            name = input('Username: ').strip().lower()          # Enters username with spaces removal and converts to lower case
+            if name not in self.users:                          # Checks if the username exists in the user dictionary
+                print('Invalid Username. Please try again.')    # Prints "Invalid Username and try again" if the user name is not found"
+                continue                                        # Restarts the loop. Goes back to ask again
+            
             pw = input('Password: ').strip()                    # Ask the passowrd and clean spaces
-            if pw == self.users[name].password:                 # Compare the password with the stored data
-                print('Login Successful!')                      # Print "Login Successful" if it is right
-                return self.users[name]                         # Return the user object
-            else:
-                print('Inccorect password. Please try again.')  # Print "Incorrect password and Please try again if it is wrong
+            if pw == self.users[name].password:                 # Compare the entered password with the stored data
+                print('Login Successful!')                      # Print "Login Successful" if it is matched
+                return self.users[name]                         # Return the user object and exits
+            
+            else:                                               # If password is incorrect
+                print('Inccorect password. Please try again.')  # Then prints 'Incorrect password and Please try again' and the loop continues
 
+    # *************************
+    # **    System Starts    **
+    # *************************
 
-    # System starts
-    def start_system(self):                                     # This is where we start the Smart Inventory System
-        print("****** This is the Smart Inventory Login *****") # Welcome message
-        user = self.login()                                     # Call the login function to authenticate the user
-        print(f"\n Welcome {user.get.name()}! [Role: {user.role}]")
+    def start_system(self):                                     # Defines main system loop
+        print('****** This is the Smart Inventory Login *****') # Welcome message
+        user = self.login()                                     # Calls the login function to authenticate the user
+        print(f'\nWelcome {user.get.name()}! [Role: {user.role}]')      # Displays welcome message, user's name and role
 
         while True:                                             # To develop a loop to keep asking the user what action to do if the action is not "exit". 
 
             print('\nAvailable actions: ')                      # Available actions: View, Add, Update the product information
             actions = ['view']                                  # Every role is allowed to view the product information
-            if user.permission('add'):                          # Permission level according to their roles: Manager(add, update, view), Supervisor(update and view), Assistant(view only)
-                actions.append('add')                           # We need to create an empty list for the actions
-            if user.permission('update'):
-                actions.append('update')
-            print(f"{', '.join(actions)}, 'or type 'exit'")     # Join three actions with 'comma' which is to separate actions, or tell the user to exit the action
+                                                                # Permission level according to their roles: Manager(add, update, view), Supervisor(update and view), Assistant(view only)
+            if user.permission('add'):                          # Checks 'add' permission. If user has 'add' permission
+                actions.append('add')                           # Adds 'add' to the action list
             
-            choice = input('Choose action: ')
+            if user.permission('update'):                       # Checks 'update' permission. If user has 'update' permission
+                actions.append('update')                        # Adds 'update' to the action list
+            
+            print(f"{', '.join(actions)}, 'or type 'exit'")     # Displays available actions and join three actions with 'comma' to separate them, or tell the user to 'exit' the action
+            
+            choice = input('Choose action: ').strip().lower()   # Gets user choice and clean spaces and converts to lower case
             if choice == 'exit':                                # If a user chooses 'exit', the system will be ended
                 break
 
@@ -97,30 +125,32 @@ class SmartInventorySystem:
 
             if choice == 'update':                              # If a user chooses 'update', call the function to update existing product information
                 self.update_product()
+    
+    
+    # *************************
+    # **    Search Engine   **
+    # *************************
 
-    # Ask user which product to view or view all
-    # Find the product by product ID
-
-    def show_products(self):
-        option = input("Enter Product ID to view or 'all' to view all: ")       #Ask for the usser to input 'view single product ID' or 'view all'
-        if option == 'all':                                                     # If the user choose 'all', all product information are shown
-            product_ids = [(prod.id) for prod in self.products]                 # Build a list of all product IDs.                 
-            product_ids.sort()                                                  # Sort the list of product IDs alphabetically
+    def show_products(self):                                                            # Defines display method to show product information
+        option = input("Enter Product ID to view or 'all' to view all: ").strip()       # Gets user option. Ask for the user to input 'view single product ID' or 'view all'
+        if option.lower() == 'all':                                                     # Converts the option to lower case. If the user option is 'all' 
+            product_ids = [prod.id.lower() for prod in self.products]                   # Creates lowercase product ID list and extracts all product IDs                
+            product_ids.sort()                                                          # Sorts the list of product IDs alphabetically
 
             for pid in product_ids:                             # Create an outer loop to look at each sorted ID
                 for prod in self.products:                      # Create an inner loop to find the product object to match the product ID
-                    if prod.id == pid:                          # If found the matched product ID, then show the product information
-                        self.show_product_details(prod)
-                        break                                   # Once the matched product is found, then break to stop searching
+                    if prod.id.lower() == pid:                  # If the matched product ID is found
+                        self.show_product_details(prod)         # Then shows the product information
+                        break                                   # Once the matched product is found, then stop the inner loop and moves to the next product ID
 
-        else:                                                   # Find a single product ID
-            for pro in self.products:                           # Create a sinle loop to check each product ID
-                if prod.id == option:                           # If the product ID is found, show the product detail
-                    self.show_product_details(prod)
-                    break                                       # Break the loop
+        else:                                                   # Finds a single product ID
+            for prod in self.products:                          # Create sa sinle loop to check each product ID
+                if prod.id.lower() == option.lower():           # If the product ID (case insensitive) is found
+                    self.show_product_details(prod)             # Shows the product detail
+                    break                                       # Exits the loop
             
-            else:
-                print('Product is not found.')                  # If there is no product ID matched after looping, print 'Product is not found'
+            else:                                               # If there is no product ID matched after looping
+                print('Product is not found.')                  # Prints 'Product is not found'
 
     # View and show the product detail and print the detail
     def show_product_details(self, product):                    # Define show_product_details
@@ -211,7 +241,7 @@ class SmartInventorySystem:
             product.returned = int(new_value)                   # Then update the quantity_returned with the new value
         else:                                                   # If the user types the invalid field
             print('Invalid field.')                             # Then print 'Invalid Field'
-            return                                              # Exit this function immediately
+            return                                              # Exits this function immediately
   
 
         
