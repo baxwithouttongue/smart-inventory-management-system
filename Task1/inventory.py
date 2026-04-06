@@ -1,10 +1,14 @@
 # This is the brain of this Smart Inventory Management System.
 # This is the program to integrate all the other programs to make the system work.
 
+import os
 import pandas as pd
 from product import Product
 from employee import Manager, Supervisor, Assistant
 from supplier import Supplier, SupplierDirectory
+
+BASE_DIR = os.path.dirname(__file__)                        # Base directory where inventory.py lives
+CSV_DIR = os.path.join(BASE_DIR, "csv")
 
 # *****************************************************************************
 # **    Main inventory system which manages users, products and suppliers    ** 
@@ -24,8 +28,8 @@ class SmartInventorySystem:                                         # Defines th
         # *************************
         # **    Load Employees   **
         # *************************
-        
-        employee_roles = pd.read_csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
+
+        employee_roles = pd.read_csv(os.path.join(CSV_DIR, "employee_role.csv"))       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
         employee_roles.columns = employee_roles.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
         
         for index, row in employee_roles.iterrows():                # Creates a loop to read the employee_role.csv line by line
@@ -45,7 +49,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Products    **
         # *************************
 
-        product_list = pd.read_csv('csv/product.csv')               # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
+        product_list = pd.read_csv(os.path.join(CSV_DIR, "product.csv"))             # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
         product_list.columns = product_list.columns.str.lower().str.strip()         # Cleans spaces and converts all column headers to lowercase
 
         for index, row in product_list.iterrows():                  # Create a loop to read the product.csv line by line
@@ -55,7 +59,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Suppliers   **
         # *************************
 
-        suppliers_info = pd.read_csv('csv/supplier.csv')                # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
+        suppliers_info = pd.read_csv(os.path.join(CSV_DIR, "supplier.csv"))               # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
         suppliers_info.columns = suppliers_info.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
 
         for index, row in suppliers_info.iterrows():                # Creates a loop to read supplier.csv line by line
@@ -224,7 +228,7 @@ class SmartInventorySystem:                                         # Defines th
             for prod in self.products
             ]
         
-        pd.DataFrame(product_data_list).to_csv('csv/product.csv', index = False)        # Saves the product_data_list to product.csv
+        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)        # Saves the product_data_list to product.csv
         print('Product is added successfully!')                                     # Displays confirmation message
 
     # ******************************
@@ -293,7 +297,7 @@ class SmartInventorySystem:                                         # Defines th
             }
             for prod in self.products
             ]
-        pd.DataFrame(product_data_list).to_csv('csv/product.csv', index = False)     # Saves the product_data_list to product.csv
+        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)     # Saves the product_data_list to product.csv
         print("Product updated successfully!")                                   # Displays confirmation message
         
 

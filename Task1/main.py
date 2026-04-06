@@ -1,5 +1,8 @@
 # This is the main entry point for the Smart Inventory Management System
 # Import the SmartInventorySystem class from inventory.py
+import os
+print("Current working directory:", os.getcwd())       # Debugging helper
+
 from inventory import SmartInventorySystem
 
 if __name__ == "__main__":
