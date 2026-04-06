@@ -22,4 +22,4 @@ class Product:                                                    # Product clas
             return (1 - self.returned / self.delivered) * 100     # 1 - return rate = good rate = supplier's KPI
         
     def reorder_point(self):
-        pass
+        return self.safety_stock + (self.delivered // max(1, self.lead_time))       # The formula: reorder point = safety stock + (average daily demand × lead time)

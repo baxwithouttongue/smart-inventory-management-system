@@ -25,7 +25,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Employees   **
         # *************************
         
-        employee_roles = pd.read.csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
+        employee_roles = pd.read_csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
         employee_roles.columns = employee_roles.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
         
         for index, row in employee_roles.iterrows():                # Creates a loop to read the employee_role.csv line by line
@@ -45,7 +45,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Products    **
         # *************************
 
-        product_list = pd.read.csv('csv/product.csv')               # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
+        product_list = pd.read_csv('csv/product.csv')               # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
         product_list.columns = product_list.columns.str.lower().str.strip()         # Cleans spaces and converts all column headers to lowercase
 
         for index, row in product_list.iterrows():                  # Create a loop to read the product.csv line by line
@@ -55,7 +55,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Suppliers   **
         # *************************
 
-        suppliers_info = pd.read_csv('supplier.csv')                # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
+        suppliers_info = pd.read_csv('csv/supplier.csv')                # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
         suppliers_info.columns = suppliers_info.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
 
         for index, row in suppliers_info.iterrows():                # Creates a loop to read supplier.csv line by line
@@ -94,13 +94,13 @@ class SmartInventorySystem:                                         # Defines th
     def start_system(self):                                     # Defines main system loop
         print('****** This is the Smart Inventory Login *****') # Welcome message
         user = self.login()                                     # Calls the login function to authenticate the user
-        print(f'\nWelcome {user.get.name()}! [Role: {user.role}]')      # Displays welcome message, user's name and role
+        print(f'\nWelcome {user.get_name()}! [Role: {user.role}]')      # Displays welcome message, user's name and role
 
         while True:                                             # To develop a loop to keep asking the user what action to do if the action is not "exit". 
 
             print('\nAvailable actions: ')                      # Available actions: View, Add, Update the product information
             actions = ['view']                                  # Every role is allowed to view the product information
-                                                                # Permission level according to their roles: Manager(add, update, view), Supervisor(update and view), Assistant(view only)
+                                                                # Permission level according to their roles: Manager(add, update, view), Supervisor(add and view), Assistant(view only)
             if user.permission('add'):                          # Checks 'add' permission. If user has 'add' permission
                 actions.append('add')                           # Adds 'add' to the action list
             
@@ -166,7 +166,7 @@ class SmartInventorySystem:                                         # Defines th
             alert = ''                                                          # It prints nothing
         
         print(f'\nID: {product.id}, Name: {product.product_name}, Price: {product.price} HKD')                                                              # Displays the product's ID, name, price in Hong Kong Dollars
-        print(f'Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}')        # Uses .get and displays supplier details: name, contact person, and email
+        print(f"Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}")        # Uses .get and displays supplier details: name, contact person, and email
         print(f'Stock: {product.stock}, Safety Stock: {product.safety_stock}, Lead Time: {product.lead_time} days')                                         # Displays inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
         print(f'Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}')                                              # Displays delivery and return product quantity information
 
@@ -224,7 +224,7 @@ class SmartInventorySystem:                                         # Defines th
             for prod in self.products
             ]
         
-        pd.DataFrame(product_data_list).to_csv('product.csv', index = False)        # Saves the product_data_list to product.csv
+        pd.DataFrame(product_data_list).to_csv('csv/product.csv', index = False)        # Saves the product_data_list to product.csv
         print('Product is added successfully!')                                     # Displays confirmation message
 
     # ******************************
@@ -293,7 +293,7 @@ class SmartInventorySystem:                                         # Defines th
             }
             for prod in self.products
             ]
-        pd.DataFrame(product_data_list).to_csv('product.csv', index = False)     # Saves the product_data_list to product.csv
+        pd.DataFrame(product_data_list).to_csv('csv/product.csv', index = False)     # Saves the product_data_list to product.csv
         print("Product updated successfully!")                                   # Displays confirmation message
         
 
