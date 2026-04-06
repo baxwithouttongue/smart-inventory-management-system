@@ -7,7 +7,7 @@ class Product:                                                    # Product clas
         self.supplier_name = str(data['supplier_name']).strip()        # Stores the supplier's name as a string, and clean spaces from the beginning and end of the string
         self.stock = int(str(data['stock_level']).strip())                     # Stores the current stock quantity as an integer
         self.safety_stock = int(str(data['safety_stock']).strip())             # Stores the safety stock quantity as an integer
-        self.lead_time = int(str(data['lead_time']).strip())                   # Stores the lead time as an integer. This is the days taken between ordering and receiving
+        self.lead_time = int(str(data['lead_time (days)']).strip())                   # Stores the lead time as an integer. This is the days taken between ordering and receiving
         self.ordering_cost = int(str(data['ordering_cost']).strip())           # Stores the ordering cost as an integer. This is the purchasing cost per unit of product
         self.holding_cost = int(str(data['holding_cost']).strip())             # Stores the holding cost as an integer. This is the cost for storing per unit of product
         self.delivered = int(str(data['quantity_delivered']).strip())          # Stores the quantity delivered as an integer. This is the total units delivered
