@@ -1,10 +1,10 @@
 # Defines the Product class
 class Product:                                                    # Product class creates a blueprint for creating product objects
     def __init__(self, data):                                     # Creates a constructor method to initialize the instance attributes of the product class
-        self.id = data['product_id'].strip()                      # Stores the product ID as a string and clean spaces from the beginning and end of a string
-        self.product_name = data['product_name'].strip()          # Stores the product name as a string, and clean spaces from the beginning and end of a string
+        self.id = str(data['product_id']).strip()                      # Stores the product ID as a string and clean spaces from the beginning and end of a string
+        self.product_name = str(data['product_name']).strip()          # Stores the product name as a string, and clean spaces from the beginning and end of a string
         self.price = float(data['price (HKD)'])                   # Stores the product price as a float (decimal number)
-        self.supplier_name = data['supplier_name'].strip()        # Stores the supplier's name as a string, and clean spaces from the beginning and end of the string
+        self.supplier_name = str(data['supplier_name']).strip()        # Stores the supplier's name as a string, and clean spaces from the beginning and end of the string
         self.stock = int(data['stock_level'])                     # Stores the current stock quantity as an integer
         self.safety_stock = int(data['safety_stock'])             # Stores the safety stock quantity as an integer
         self.lead_time = int(data['lead_time'])                   # Stores the lead time as an integer. This is the days taken between ordering and receiving
