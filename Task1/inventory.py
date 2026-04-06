@@ -138,8 +138,36 @@ class SmartInventorySystem:
         print(f"Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}")      # Print delivery and return product quantity information
 
     # Add a new product detail
+    def add_new_product():                                      # Define a method called add_new_product inside class
+        print("\n***** Add New Product *****")                  # Print 'Add New Product' to tell the user for entering new product detail
+        pid = input('Product ID: ')                             # Enter Product ID
+        product_name = input('Product Name: ')                  # Enter Product Name
+        price = input('Price: ')                                # Enter Price
+        supplier_name = input('Supplier: ')                     # Enter Supplier
+        stock = input('Stock level: ')                          # Enter Stock Level
+        safety = input('Safety Stock level: ')                  # Enter Safety Stock Level
+        lead = input('Lead Time: ')                             # Enter Lead Time
+        order_cost = input('Ordering Cost: ')                   # Enter Ordering Cost
+        hold_cost = input('Holding Cost: ')                     # Enter Holding Cost
+        delivered = input('Quantity delivered: ')               # Enter Quantity delivered
+        returned = input('Quantity returned: ')                 # Enter Quantity returned
 
-    # Create a dictionary for the new product detail
+        # Create a dictionary for the new product called new_row
+        new_row = {                                             # Create a container to prepare the data to be stored
+            'product_id': pid,                                  # 'product_id' points to pid
+            'product_name': product_name,                       # 'product_name' points to product_name
+            'price (hkd)': price,                               # 'price (hkd)'points to price
+            'supplier_name': supplier_name,                     # 'supplier_name'points to supplier_name, 
+            'stock_level': stock,                               # 'stock_level' points to stock
+            'safety_stock': safety,                             # 'safety_stock' points to safety
+            'lead_time (days)': lead,                           # 'lead_time (days)' points to lead
+            'ordering_cost': order_cost,                        # 'ordering_cost' points to order_cost
+            'holding_cost': hold_cost,                          # 'holding_cost' points to hold_cost
+            'quantity_delivered': delivered,                    # 'quantity_delivered' points to delivered
+            'quantity_returned': returned                       # 'quantity_returned' points to returned
+        }
+
+        se
 
     # Update product list
 
