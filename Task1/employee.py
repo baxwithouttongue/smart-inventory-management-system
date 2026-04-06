@@ -1,29 +1,29 @@
 # This is the class for defining all users who will use this system
 # Different roles have different levels of permission to access and control the data
 
-class User:                             # Define class for all users. OOP Abstraction and Encapsulation
-    def __init__(self, employee_name, password, role):       # Encapsulate the user's infomation and role
-        self.name = employee_name       # Store the user's name
-        self.password = password        # Store the user's password
-        self.role = role                # Store the user's role
+class User:                                                     # Defines the parent class and creates a blueprint for all user types
+    def __init__(self, employee_name, password, role):          # Creates a constructor method to initialize a new user object with name, password and rold
+        self.employee_name = employee_name                      # Stores and saves the user's name
+        self.password = password                                # Stores and saves the user's password
+        self.role = role                                        # Stores and saves the user's role
 
-    def authenticate(self, password):   # Check if the entered password matches the stored password
-        return self.passoword == password
+    def authenticate(self, password):                           # Checks if the entered password matches the stored password
+        return self.password == password                        # Returns True if the password matches but False otherwise
     
-    def get_name(self):                 # Return the user's name            
-        return self.employee_name    
+    def get_name(self):                                         # Returns the user's name            
+        return self.employee_name                               # Allows other parts of the program to retrieve the username   
 
-    def permission(self, action):       # No permission is allowed to access or control any data
-        return False
+    def permission(self, action):                               # No permission is allowed to access or control any data by default
+        return False                                            # No access of any data for base user
 
-class Manager(User):                    # Manager has the permission to add, update and view the product data
-    def permission(self, action):
-        return action in ["add", "update", "view"]
+class Manager(User):                                            # Defines Manager subclass which inherits all methods and attributes from User
+    def permission(self, action):                               # Defines Manager's access level
+        return action in ['add', 'update', 'view']              # Manager posseses a full permission to add, update and view products
 
-class Supervisor(User):                 # Supervisor has the permission to add and veiw data
-    def permission(self, action):
-        return action in ["add", "view"]
+class Supervisor(User):                                         # Defines Supervisor subclass which inherits from User
+    def permission(self, action):                               # Defines Supervisor's access level
+        return action in ['add', 'view']                        # Supervisor posseses a right to add and view the products but cannot update
 
-class Assistant(User):                  # Assistant has the permission to view product data
-    def permission(self, action):
-        return action == "view"
+class Assistant(User):                                          # Defines Assistant subclass which inhertits from User
+    def permission(self, action):                               # Defines Assistant's access level
+        return action == "view"                                 # Assistant can only view products and cannot either add or update the product details
