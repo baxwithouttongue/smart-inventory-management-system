@@ -17,7 +17,7 @@ class SmartInventorySystem:                                         # Defines th
         self.users = {}                                             # Creates an empty user dictionary that will store User's identity for later authentication and permission checking
         self.products = []                                          # Creates an empty product list to store the product data
         self.suppliers = SupplierDirectory()                        # Creates supplier directory to manage supplier data
-        self.prepare_files ()                                       # Load dall ata from employee, product and supplier files
+        self.prepare_files ()                                       # Load all ata from employee, product and supplier files
 
     def prepare_files(self):                                        # Defines data loading method
 
@@ -25,7 +25,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Employees   **
         # *************************
         
-        employee_roles = pd.read_csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
+        employee_roles = pd.read.csv('csv/employee_role.csv')       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
         employee_roles.columns = employee_roles.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
         
         for index, row in employee_roles.iterrows():                # Creates a loop to read the employee_role.csv line by line
@@ -152,35 +152,42 @@ class SmartInventorySystem:                                         # Defines th
             else:                                               # If there is no product ID matched after looping
                 print('Product is not found.')                  # Prints 'Product is not found'
 
-    # View and show the product detail and print the detail
-    def show_product_details(self, product):                    # Define show_product_details
-        reorder_point = product.reorder_point()                 # Call the reorder_point method from the product object
-        score = product.supplier_kpi_score()                    # Call the supplier_kpi_score from the product objct
-        supplier_info = self.suppliers.get_supplier(product.supplier_name)      # Fetch full supplier detals from supplier database
-        if product.stock <= reorder_point:                      # Check if the stock is less than or equal to the reorder point
-            alert = '[!] RE-ORDER'                              # If the stock is less than or equal to the reorder point, it shows alert to the user
-        else:                                                   # If the stock level is still above teh reorder point, then the program runs the else block
-            alert = ''                                          # It prints nothing
-        
-        print(f"\nID: {product.id}, Name: {product.product_name}, Price: {product.price} HKD")          # Print the product's ID, name, price in Hong Kong Dollars
-        print(f"Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}")        # Print supplier details: name, contact person, and email
-        print(f"Stock: {product.stock}, Safety Stock: {product.safety_stock}, Lead Time: {product.lead_time} days")    # Print inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
-        print(f"Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}")      # Print delivery and return product quantity information
+    # *******************************
+    # **    Show Product Details   **
+    # *******************************
 
-    # Add a new product detail
-    def add_new_product():                                      # Define a method called add_new_product inside class
-        print("\n***** Add New Product *****")                  # Print 'Add New Product' to tell the user for entering new product detail
-        pid = input('Product ID: ')                             # Enter Product ID
-        product_name = input('Product Name: ')                  # Enter Product Name
-        price = input('Price: ')                                # Enter Price
-        supplier_name = input('Supplier: ')                     # Enter Supplier
-        stock = input('Stock level: ')                          # Enter Stock Level
-        safety = input('Safety Stock level: ')                  # Enter Safety Stock Level
-        lead = input('Lead Time: ')                             # Enter Lead Time
-        order_cost = input('Ordering Cost: ')                   # Enter Ordering Cost
-        hold_cost = input('Holding Cost: ')                     # Enter Holding Cost
-        delivered = input('Quantity delivered: ')               # Enter Quantity delivered
-        returned = input('Quantity returned: ')                 # Enter Quantity returned
+    def show_product_details(self, product):                                    # Defines show_product_details
+        reorder_point = product.reorder_point()                                 # Calls the reorder_point method from the product object
+        score = product.supplier_kpi_score()                                    # Calls the supplier_kpi_score from the product objct
+        supplier_info = self.suppliers.get_supplier(product.supplier_name)      # Fetches full supplier detals from supplier database
+        if product.stock <= reorder_point:                                      # Checks if the stock is less than or equal to the reorder point
+            alert = '[!] RE-ORDER'                                              # If the stock is less than or equal to the reorder point, it shows alert to the user
+        else:                                                                   # If the stock level is still above the reorder point, then the program runs the else block
+            alert = ''                                                          # It prints nothing
+        
+        print(f'\nID: {product.id}, Name: {product.product_name}, Price: {product.price} HKD')                                                              # Displays the product's ID, name, price in Hong Kong Dollars
+        print(f'Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}')        # Uses .get and displays supplier details: name, contact person, and email
+        print(f'Stock: {product.stock}, Safety Stock: {product.safety_stock}, Lead Time: {product.lead_time} days')                                         # Displays inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
+        print(f'Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}')                                              # Displays delivery and return product quantity information
+
+
+    # **********************************
+    # **    Add New Product Details   **
+    # **********************************
+    
+    def add_new_product(self):                                      # Defines a method called add_new_product inside class
+        print("\n***** Add New Product *****")                  # Displays 'Add New Product' to tell the user for entering new product detail
+        pid = input('Product ID: ').strip()                     # Gets Product ID and cleans spaces
+        product_name = input('Product Name: ').strip()          # Gets Product Name and cleans spaces
+        price = float(input('Price (HKD): ').strip())           # Gets Price and cleans spaces
+        supplier_name = input('Supplier: ').strip()             # Gets Supplier and cleans spaces
+        stock = int(input('Stock level: ').strip())             # Gets Stock Level and cleans spaces
+        safety = int(input('Safety Stock level: ').strip())     # Gets Safety Stock Level and cleans spaces
+        lead = int(input('Lead Time: ').strip())                # Gets Lead Time and cleans spaces
+        order_cost = int(input('Ordering Cost: ').strip())      # Gets Ordering Cost and cleans spaces
+        hold_cost = int(input('Holding Cost: ').strip())        # Gets Holding Cost and cleans spaces
+        delivered = int(input('Quantity delivered: ').strip())  # Gets Quantity delivered and cleans spaces
+        returned = int(input('Quantity returned: ').strip())    # Gets Quantity returned and cleans spaces
 
         # Create a dictionary for the new product called new_row
         new_row = {                                             # Create a container to prepare the data to be stored
@@ -197,26 +204,52 @@ class SmartInventorySystem:                                         # Defines th
             'quantity_returned': returned                       # 'quantity_returned' points to returned
         }
 
-    # Update product list
-    def update_product(self):                                   # Define the function and prints 'Update Product' message
-        print('\n***** Update Product *****')
-        pid = input('Enter Product ID to update: ')             # Ask the user for the product ID
+        self.products.append(Product(new_row))                  # Adds new product to sel.product list
+
+        # Creates a dictionary and save all products back to product.csv file
+        
+        product_data_list = [{                                  # Creates a new list and converts all products to the dictionaries
+            'product_id': prod.id,                              # This part defines each product data should be match the detail in product.csv file
+            'product_name': prod.product_name,
+            'price (hkd)': prod.price,
+            'supplier_name': prod.supplier_name,
+            'stock_level': prod.stock,
+            'safety_stock': prod.safety_stock,
+            'lead_time (days)': prod.lead_time,
+            'ordering_cost': prod.ordering_cost,
+            'holding_cost': prod.holding_cost,
+            'quantity_delivered': prod.delivered,
+            'quantity_returned': prod.returned
+            } 
+            for prod in self.products
+            ]
+        
+        pd.DataFrame(product_data_list).to_csv('product.csv', index = False)        # Saves the product_data_list to product.csv
+        print('Product is added successfully!')                                     # Displays confirmation message
+
+    # ******************************
+    # **    Update Product List   **
+    # ******************************
+
+    def update_product(self):                                        # Defines update method to modify the existing product detail
+        print('\n***** Update Product *****')                        # Displays 'Update Product' to tell the user to update the product detail
+        pid = input('Enter Product ID to update: ').strip().lower()  # Gets the product ID, clean spaces and converts to lower case
 
         # Find the product in the list
         product = None                                          # Product sets none at the beginning because no product has been found by default
         for prod in self.products:                              # Create a loop to go through the product detail
-            if prod.id == pid:                                  # If the product ID is matched
+            if prod.id.lower() == pid:                          # If the product ID is matched with cleaned spaces
                 product = prod                                  # Then assign it to the product
                 break                                           # Stop searching
 
         if not product:                                         # If the product ID is not matched
-            print('Product is not found.')                      # Then print the product is not found
-            return                                              # Return to stop the function right here
+            print('Product is not found.')                      # Then displays the 'Product is not found'
+            return                                              # Exits the method
 
-        # Show the chosen field
+        # Displays the editable field
         print('Editable fields: product_name, price, supplier_name, stock_level, safety_stock, lead_time (days), ordering_cost, holding_cost, quantity_delivered, quantity_returned')
-        field = input('Which field do you want to change? ')    # Show which field can be edited / update
-        new_value = input('Enter new value: ')                  # Ask which field the user what to change
+        field = input('Which field do you want to change? ').strip().lower()    # Gets field name, cleans spaces and converts to lower case
+        new_value = input('Enter new value: ').strip()                            # Gets new value and cleans spaces
 
         # Update the chosen fields
         if field == 'product_name':                             # If the user choose product_name
@@ -243,7 +276,25 @@ class SmartInventorySystem:                                         # Defines th
             print('Invalid field.')                             # Then print 'Invalid Field'
             return                                              # Exits this function immediately
   
+        # Creates a dictionary and save all products back to product.csv file
 
+        product_data_list = [{                                  # Creates a new list and converts all products to the dictionaries
+            'product_id': prod.id,                              # This part defines each product data should be match the detail in product.csv file
+            'product_name': prod.product_name,
+            'price (hkd)': prod.price,
+            'supplier_name': prod.supplier_name,
+            'stock_level': prod.stock,
+            'safety_stock': prod.safety_stock,
+            'lead_time (days)': prod.lead_time,
+            'ordering_cost': prod.ordering_cost,
+            'holding_cost': prod.holding_cost,
+            'quantity_delivered': prod.delivered,
+            'quantity_returned': prod.returned
+            }
+            for prod in self.products
+            ]
+        pd.DataFrame(product_data_list).to_csv('product.csv', index = False)     # Saves the product_data_list to product.csv
+        print("Product updated successfully!")                                   # Displays confirmation message
         
 
 
