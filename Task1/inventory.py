@@ -167,9 +167,55 @@ class SmartInventorySystem:
             'quantity_returned': returned                       # 'quantity_returned' points to returned
         }
 
-        se
-
     # Update product list
+    def update_product(self):                                   # Define the function and prints 'Update Product' message
+        print('\n***** Update Product *****')
+        pid = input('Enter Product ID to update: ')             # Ask the user for the product ID
 
+        # Find the product in the list
+        product = None                                          # Product sets none at the beginning because no product has been found by default
+        for prod in self.products:                              # Create a loop to go through the product detail
+            if prod.id == pid:                                  # If the product ID is matched
+                product = prod                                  # Then assign it to the product
+                break                                           # Stop searching
+
+        if not product:                                         # If the product ID is not matched
+            print('Product is not found.')                      # Then print the product is not found
+            return                                              # Return to stop the function right here
+
+        # Show the chosen field
+        print('Editable fields: product_name, price, supplier_name, ' \     
+        'stock_level, safety_stock, lead_time (days), ordering_cost, ' \
+        'holding_cost, quantity_delivered, quantity_returned')
+        field = input('Which field do you want to change? ')    # Show which field can be edited / update
+        new_value = input('Enter new value: ')                  # Ask which field the user what to change
+
+        # Update the chosen fields
+        if field == 'product_name':                             # If the user choose product_name
+            product.product_name = new_value                    # Then update the product_name with the new value
+        elif field == 'price':                                  # If the user choose price
+            product.price = float(new_value)                    # Then update the price with the new value
+        elif field == 'supplier_name':                          # If the user supplier_name
+            product.supplier_name = new_value                   # Then update the supplier_name with the new value
+        elif field == 'stock_level':                            # If the user choose price
+            product.stock = int(new_value)                      # Then update the price with the new value
+        elif field == 'safety_stock':                           # If the user choose safety_stock
+            product.safety_stock = int(new_value)               # Then update the safety_stock with the new value
+        elif field == 'lead_time (days)':                       # If the user choose lead_time (days)
+            product.lead_time = int(new_value)                  # Then update the lead_time (days) with the new value
+        elif field == 'ordering_cost':                          # If the user choose ordering_cost
+            product.ordering_cost = int(new_value)              # Then update the ordering_cost with the new value
+        elif field == 'holding_cost':                           # If the user choose holding_cost
+            product.holding_cost = int(new_value)               # Then update the holding_cost with the new value
+        elif field == 'quantity_delivered':                     # If the user choose quantity_delivered
+            product.delivered = int(new_value)                  # Then update the quantity_delivered with the new value
+        elif field == 'quantity_returned':                      # If the user choose quantity_returned
+            product.returned = int(new_value)                   # Then update the quantity_returned with the new value
+        else:                                                   # If the user types the invalid field
+            print('Invalid field.')                             # Then print 'Invalid Field'
+            return                                              # Exit this function immediately
+  
+
+        
 
 
