@@ -9,4 +9,21 @@ def knapsack(products, budget):     # Defines a Knapsak method to choose which p
     for p in products:              # Creates a loop to go through all products
         unit_cost = p.ordering_cost + p.holding_cost        # Total cost = ordering cost + inventory holding cost
         unit_profit = p.price - unit_cost                   # Selling price - unit cost = Profit made per unit of product
+
+        if unit_profit <= 0:        # If the product does not make any profit
+            continue                # Jumps to the next product in the loop
+
+        max_units = min(p.stock, remaining_budget // unit_cost)     # Determines the maximum units we can buy under the budget. // to give the integer of the units
+
+        # profit = max_units * unit_profit
+        # cost = max_units * unit_cost
+        # remaining budget -= cost
+        # total profit += profit
+
+        # saves product details, use append
+
+        # sorts the chosen products in a decending order
+
+
+    
         
