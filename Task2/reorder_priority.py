@@ -10,18 +10,22 @@ class MinHeap:                              # Creates a MinHeap Class
         return (i - 1) //2                       
 
     def left(self, i):                      # Left child index
-        return (2 * 1 + 1)
+        return (2 * i + 1)
 
     def right(self, i):                     # Right child index
-        retrun (2 * i + 2)
+        return (2 * i + 2)
 
-    def insert(self, key, value):           # Insert a new element into the MinHeap
-        self.data.append(key, value)
-        i = len(self, data) - 1
-        while i > 0 and self.data[(i-1)]//2 > self.data[i]:
-            self.data[i], self.data[(i-1)]//2 = self.data[(i-1)//2], self.data[i]
-            i = (i - 1)//2
-
+    def insert(self, key, value):           # Defines a method to insert a new element into the MinHeap
+        self.data.append((key, value))      # Adds the new element to key (priority value), value (the data being stored)
+        i = len(self.data) - 1              # Gets the index of the added element
+        while i > 0:                        # Creates a loop when index 0 has not been reached
+            p = (i - 1)//2                  # Calculates teh parent index of the current node
+            if self.data[p][0] <= self.data[i][0]:      # If the parent ≤ child, heap stops
+                break                       # Exits the loops (arent ≤ child)
+            else:                           # If parent > child
+                self.data[i], self.data[p] = self.data[p], self.data[i]     # Swaps the parent and child
+                i = p                       # Updates i to the parent's index and the loop continues
+            
     def get_smallest(self):                 # The self.data list stores heap elements
         if not self.data:                   # If the list is empty
             return None                     # There is nothing to return
@@ -33,7 +37,7 @@ class MinHeap:                              # Creates a MinHeap Class
 
         self.data[0] = self.data.pop()      # Replaces the root with the last element
 
-        self.minheapify(0)                  # Calls the minheapify section
+        self.minHeapify(0, len(self.data))                  # Calls the minheapify section
     
     def minHeapify(self, i, n):            # Defines a method, i is the root of the subtree, n is the currect size of the heap elements
 
@@ -53,8 +57,16 @@ class MinHeap:                              # Creates a MinHeap Class
         self.data[i], self.data[smallest] = self.data[smallest], self.data[i]   # Recursive steps: Swaps the two values to move the smallest value up to position i
         self.minHeapify(smallest, n)        # Calls minHeepfy function recursively to continue the function until base case is met
 
-          
-        
+class ReorderPriorityQueue:                                                     # Defines a class for priority queue for reordering
+    def __init__(self):                                                         # Craetes a constructor to create the objects
+        self.heap = MinHeap()                                                   # Creates an empty MinHeap (priority queue) object and stores it in self.heap
 
-class ReorderPriorityQueue:
-   pass
+    def add_product(self, product_id, stock, reorder_point):                    # Defines a method to add a product to the priority queue                       
+        self.heap.insert(reorder_point, (product_id, stock))                    # Inserts the product and stores to the priority queue
+
+    def get_next_reorder(self):                                                 # Defines a method to remove and return the most smallest reorder point from the priority queue
+        item = self.heap.extract_min()                                          # Removes and returns the smallest item from the heap. 
+        if item:                                                                # Checks the following conditions
+            key, (product_id, stock) = item                                     # If the items gets the reorder point, product_id and stock get the values
+            return f"{product_id} (stock={stock}, reorder_point={key})"         # Displays which product to reorder
+        return None                                                             # If there no product are waiting to be reordered, then return None
