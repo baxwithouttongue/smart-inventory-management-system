@@ -3,19 +3,20 @@
 # Reorder_priority uses MinHeap to find the urgent items to re-order
 # Budget_optimizer uses Knapsac to help make decision for maximizing the profit efficiently
 
-from inventory import SmartInventorySystem              # Import the main inventory system from Task 1
-from reorder_priority import ReorderPriorityQueue       # Import Heap class for finding the reorder priority
-from budget_optimizer import knapsack                   # Import Knapsack for optimizing the profit within the budget
+from inventory import SmartInventorySystem                  # Import the main inventory system from Task 1
+from reorder_priority import ReorderPriorityQueue           # Import Heap class for finding the reorder priority
+from budget_optimizer import knapsack                       # Import Knapsack for optimizing the profit within the budget
 
 # This menu plugs into the SmartInventorySystem
 def task2_menu(system):
-    pass
-    # This is the entry point part
-    # Prints Welcome message
-    # Option: 1. View reorder priority (Heap)
-    # Option: 2. Opitmize budget (Knapsack)
-    # Option: 3. Back to main menu
-    # Gets choice
+    while True:                                             # Creates a loop until the user exit the while loop
+        print('\n ***** Welcome to Task 2 Menu *****')      # Displays Welcome message
+        print('Option: 1. View reorder priority (Heap)')    # Displays option 1: Use Heap to find the highest priority product to reorder
+        print('Option: 2. Opitmize budget (Knapsack)')      # Displays option 2: Use Knapsack to maximize the profit within the budget
+        print('Option: 3. Back to main menu')               # Displays option 3: Exit Task 2 menu
+        choice = input('Enter your option:  ')              # Gets choice
+
+        
 
     # if choice == 1, uses Heap to find the reorder priority
     # if choice == 2, uses Knapsak to optimize the budget
