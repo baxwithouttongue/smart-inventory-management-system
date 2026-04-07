@@ -24,8 +24,21 @@ class MinHeap:                     # Creates a MinHeap Class
             self.data[i], self.data[(i-1)]//2 = self.data[(i-1)//2], self.data[i]
             i = (i - 1)//2
 
-    def get_smallest(self):
+    def get_smallest(self):             # The self.data list stores heap elements
+        if not self.data:               # If the list is empty
+            return None                 # There is nothing to return
         
+        if len(self.data) == 1:         # If there is only one element inside the list
+            return self.data.pop()      # Removes and returns to the only element from the list
+        
+        root = self.data[0]             # In the min-heap, the smallest element is always set as index[0] and stores in the root variable
+
+        self.data[0] = self.data.pop()  # Replaces the root with the last element
+
+        self.minheapify(0)              # Calls the minheapify section
+    
+
+
         pass
     
     def minheapify(self, i):
