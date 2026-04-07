@@ -16,12 +16,17 @@ def task2_menu(system):
         print('Option: 3. Back to main menu')               # Displays option 3: Exit Task 2 menu
         choice = input('Enter your option:  ')              # Gets choice
 
+        if choice == '1':                                   # Uses Heap to find the reorder priority
+            pass
         
+        elif choice == '2':                                 # Uses Knapsak to optimize the budget
+            pass
+    
+        elif choice == '3':                                 # Exits this section
+            break
 
-    # if choice == 1, uses Heap to find the reorder priority
-    # if choice == 2, uses Knapsak to optimize the budget
-    # if choice == 3, end this section
-    # if press the wrong button, displays invalid choice
+        else:                                               # Wrong entry and displays invalid choice
+            print('Invalid choice.')
 
 # Main entry point
 if __name__ == 'main':
