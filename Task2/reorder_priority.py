@@ -1,4 +1,4 @@
-# This is the reorder_priority program to apply Heap
+# This is the reorder_priority program to apply MinHeap Data Structure
 # To find which item needs to be reordered first
 # The item with the smallest reorder_point comes out first
 
