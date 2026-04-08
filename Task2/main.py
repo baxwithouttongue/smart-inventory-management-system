@@ -29,7 +29,7 @@ def task2_menu(system):
             print('Invalid choice.')
 
 # Main entry point
-if __name__ == 'main':
-    system = SmartInventorySystem                       # Run Task1 menu
+if __name__ == '__main__':
+    system = SmartInventorySystem()                       # Run Task1 menu
     task2_menu(system)                                  # Run Task2 menu
     

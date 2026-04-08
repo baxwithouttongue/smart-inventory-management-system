@@ -28,10 +28,10 @@ def knapsack(products, budget):     # Defines a Knapsak method to choose which p
                 'cost': cost,
                 'profit':  profit
             })
-        # sorts the chosen products in a decending order
-        chosen_products.sort(key = lambda x : x['profit'], reverse = True)
+    # Sorts the chosen products in a decending order
+    chosen_products.sort(key = lambda x : x['profit'], reverse = True)
 
-        return chosen_products, total_profit
+    return chosen_products, total_profit
 
 
     
