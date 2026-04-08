@@ -19,8 +19,9 @@ def task2_menu(system):
         if choice == '1':                                   # Uses Heap to find the reorder priority
             queue = ReorderPriorityQueue()
             for product in system.products:                 # Adds all products
-                queue.add_product(product.id, product.stock, product.reorder_point)
+                queue.add_product(product.id, product.stock, product.reorder_point())
             print("Next product to reorder:", queue.get_next_reorder())         # Displays the next product to reorder (minheap pops out the product with the smallest reorder point)
+            input('Press Enter to continue.')
         
         elif choice == '2':                                 # Uses Knapsak to optimize the budget
             budget = int(input('Enter budget: '))           # Asks user for budget

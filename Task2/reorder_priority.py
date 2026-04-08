@@ -19,12 +19,12 @@ class MinHeap:                              # Creates a MinHeap Class
         self.data.append((key, value))      # Adds the new element to key (priority value), value (the data being stored)
         i = len(self.data) - 1              # Gets the index of the added element
         while i > 0:                        # Creates a loop when index 0 has not been reached
-            p = (i - 1)//2                  # Calculates teh parent index of the current node
-            if self.data[p][0] <= self.data[i][0]:      # If the parent ≤ child, heap stops
+            parent_idx = (i - 1)//2                  # Calculates teh parent index of the current node
+            if self.data[parent_idx][0] <= self.data[i][0]:      # If the parent ≤ child, heap stops
                 break                       # Exits the loops (arent ≤ child)
             else:                           # If parent > child
-                self.data[i], self.data[p] = self.data[p], self.data[i]     # Swaps the parent and child
-                i = p                       # Updates i to the parent's index and the loop continues
+                self.data[i], self.data[parent_idx] = self.data[parent_idx], self.data[i]     # Swaps the parent and child
+                i = parent_idx                       # Updates i to the parent's index and the loop continues
             
     def get_smallest(self):                 # The self.data list stores heap elements
         if not self.data:                   # If the list is empty
@@ -69,4 +69,4 @@ class ReorderPriorityQueue:                                                     
         if item:                                                                # Checks the following conditions
             key, (product_id, stock) = item                                     # If the items gets the reorder point, product_id and stock get the values
             return f'{product_id} (stock={stock}, reorder_point={key})'         # Displays which product to reorder
-        return None                                                             # If there no product are waiting to be reordered, then return None
+        return None                                                         # If there no product are waiting to be reordered, then return None

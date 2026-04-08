@@ -27,8 +27,8 @@ def knapsack(products, budget):     # Defines a Knapsak method to choose which p
                 'units': max_units,
                 'unit_cost': unit_cost,
                 'unit_profit': unit_profit,
-                'cost': cost,
-                'profit':  profit
+                'total_cost': cost,
+                'total_profit':  profit
             })
     # Sorts the chosen products in a decending order
     chosen_products.sort(key = lambda x : x['total_profit'], reverse = True)
