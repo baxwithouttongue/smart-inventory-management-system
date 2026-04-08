@@ -17,10 +17,23 @@ def task2_menu(system):
         choice = input('Enter your option:  ')              # Gets choice
 
         if choice == '1':                                   # Uses Heap to find the reorder priority
-            pass
+            queue = ReorderPriorityQueue()
+            for product in system.products:                 # Adds all products
+                queue.add_product(product.id, product.stock, product.reorder_point)
+            print("Next product to reorder:", queue.get_next_reorder())         # Displays the next product to reorder (minheap pops out the product with the smallest reorder point)
         
         elif choice == '2':                                 # Uses Knapsak to optimize the budget
-            pass
+            budget = int(input('Enter budget: '))           # Asks user for budget
+            chosen_products, total_profit = knapsack(system.products, budget)   # Calls the knapsack function with the list of products chosen for purchase
+            print('Chosen products: ')                      # Displays the chosen products words
+
+            for prod in chosen_products:                    # Creates a loop to go through each product in the list of chosen products
+
+                # Displays the details of each product (Product ID, Units purchased, Unit cost and unit profit, Total cost and toal profit)
+                print(f"  {prod['id']} - Units: {prod['units']}, "
+                      f"Unit cost: {prod['unit_cost']}, Unit profit: {prod['unit_profit']}, "
+                      f"Total cost: {prod['total_cost']}, Total profit: {prod['total_profit']}")
+            print(f'\nTotal profit: {total_profit}')        # Displays the overall profit from all chosen products
     
         elif choice == '3':                                 # Exits this section
             break
@@ -30,6 +43,6 @@ def task2_menu(system):
 
 # Main entry point
 if __name__ == '__main__':
-    system = SmartInventorySystem()                       # Run Task1 menu
-    task2_menu(system)                                  # Run Task2 menu
+    system = SmartInventorySystem()                         # Run Task1 menu
+    task2_menu(system)                                      # Run Task2 menu
     

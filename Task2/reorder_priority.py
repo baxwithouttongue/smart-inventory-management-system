@@ -34,11 +34,8 @@ class MinHeap:                              # Creates a MinHeap Class
             return self.data.pop()          # Removes and returns to the only element from the list
         
         root = self.data[0]                 # In the min-heap, the smallest element is always set as index[0] and stores in the root variable
-
         self.data[0] = self.data.pop()      # Replaces the root with the last element
-
         self.minHeapify(0, len(self.data))  # Calls the minheapify section
-
         return root
 
     
@@ -71,5 +68,5 @@ class ReorderPriorityQueue:                                                     
         item = self.heap.get_smallest()                                          # Removes and returns the smallest item from the heap. 
         if item:                                                                # Checks the following conditions
             key, (product_id, stock) = item                                     # If the items gets the reorder point, product_id and stock get the values
-            return f"{product_id} (stock={stock}, reorder_point={key})"         # Displays which product to reorder
+            return f'{product_id} (stock={stock}, reorder_point={key})'         # Displays which product to reorder
         return None                                                             # If there no product are waiting to be reordered, then return None
