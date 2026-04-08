@@ -2,7 +2,7 @@
 # This program tells the user to buy the profitable products as many as possible  under a given budget to provide the highest profit.
 
 def knapsack(products, budget):     # Defines a Knapsak method to choose which products to buy and how many units
-    chosen = []                     # Creates a list to store the chosen products
+    chosen_products = []                     # Creates a list to store the chosen products
     total_profit = 0                # Creates the counter to track the total profit
     remaining_budget = budget       # Creates a variable to track the budget is left for buying the other products
 
@@ -15,14 +15,23 @@ def knapsack(products, budget):     # Defines a Knapsak method to choose which p
 
         max_units = min(p.stock, remaining_budget // unit_cost)     # Determines the maximum units we can buy under the budget. // to give the integer of the units
 
-        # profit = max_units * unit_profit
-        # cost = max_units * unit_cost
-        # remaining budget -= cost
-        # total profit += profit
+        if max_units > 0:                                           # Checks if we have enough money to buy at least one unit
+            profit = max_units * unit_profit                        # Calculates the maximum profit that i can make under the budget
+            cost = max_units * unit_cost                            # Calculates the cost of the units
+            remaining_budget -= cost                                # Subtracts the cot from our remaining budget
+            total_profit += profit                                  # Adds the profit to the total profit
 
-        # saves product details, use append
-
+        # Saves product details, use append
+            chosen_products.append({
+                'id': p.id,
+                'units': max_units,
+                'cost': cost,
+                'profit':  profit
+            })
         # sorts the chosen products in a decending order
+        chosen_products.sort(key = lambda x : x['profit'], reverse = True)
+
+        return chosen_products, total_profit
 
 
     
