@@ -1,27 +1,33 @@
-# Task 1: Smart Inventory Management System
+# Smart Inventory Management System
 
-This program demonstrates the OOP-based inventory management system with employee authentication, product information, inventory tracking, supplier KPI evaluation, reorder decision based on EOQ and heap sort.
+This is the OOP project containg two tasks:
+
+- Task 1: Smart Inventory Management System (Project Report, Program files, README)
+
+- Task 2: Study Report on Max-Heap and Heap Sort (Study Report, Program files, README)
 
 ## Project Folder Contents
 
-- main.py
-- product.py
-- supplier.py
-- employee.py
-- inventory.py
-- employee_role.csv
-- products.csv
-- suppliers.csv
-- supplier_KPI.csv
-- Project_Report.pdf
-- README.md
+- Task 1: Project_Report.pdf, README.md, Python program files
 
+- Task 2: Study_Report.pdf, README.md, Python program files
+
+## Reports
+
+- Task 1 Project Report: Task1/Project_Report.pdf
+
+- Task 2 Study Report: Task2/Study_Report.pdf
 
 ## User Guide
-
-Open a terminal and go to the Task1 foler, then run
+Open a terminal and go to the task folder, then run
 
 ```
 cd Task1
+python main.py
+```
+or
+
+```
+cd Task2
 python main.py
 ```

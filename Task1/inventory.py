@@ -125,7 +125,7 @@ class SmartInventorySystem:                                         # Defines th
             if user.permission('update'):                       # Checks 'update' permission. If user has 'update' permission
                 actions.append('update')                        # Adds 'update' to the action list
             
-            print(f"{', '.join(actions)}, 'or type 'exit'")     # Displays available actions and join three actions with 'comma' to separate them, or tell the user to 'exit' the action
+            print(f"{', '.join(actions)}, or type 'exit'")     # Displays available actions and join three actions with 'comma' to separate them, or tell the user to 'exit' the action
             
             choice = input('Choose action: ').strip().lower()   # Gets user choice and clean spaces and converts to lower case
             if choice == 'exit':                                # If a user chooses 'exit', the system will be ended
