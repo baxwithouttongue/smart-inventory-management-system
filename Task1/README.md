@@ -1,33 +1,52 @@
 # Smart Inventory Management System
 
-This is the OOP project containg two tasks:
+# Overview
+This is the Smart Inventory Management System. This program demonstrates the OOP-based inventory management system with employee authentication, product information, inventory tracking, supplier KPI evaluation.
 
-- Task 1: Smart Inventory Management System (Project Report, Program files, README)
+# Requirements:
+- Python 3.8+
+- Pandas
 
-- Task 2: Study Report on Max-Heap and Heap Sort (Study Report, Program files, README)
+# Installation
+Installation Commands
+- Windows & Mac (using pip): pip install pandas
 
-## Project Folder Contents
+# Quick usage:
+ 
+1. Navigate to the project folder:
+cd smart-inventory-management-system/Task1
 
-- Task 1: Project_Report.pdf, README.md, Python program files
-
-- Task 2: Study_Report.pdf, README.md, Python program files
-
-## Reports
-
-- Task 1 Project Report: Task1/Project_Report.pdf
-
-- Task 2 Study Report: Task2/Study_Report.pdf
-
-## User Guide
-Open a terminal and go to the task folder, then run
-
-```
-cd Task1
+2. Run the program:
 python main.py
-```
-or
 
-```
-cd Task2
-python main.py
-```
+3. Login with sample name and passwords:
+Manager → Garfield / abc123
+Supervisor → King / abc456
+Assistant → Boo / abc789
+
+4. Available actions:
+
+view --> display product details (view specific product id from 'P001-P023' or 'all')
+add --> add a new product
+update --> modify existing product details
+exit --> quit the program
+
+# Project Folder Contents
+
+Task1
+|-- Project_Report.pdf
+|-- main.py         # Entry point
+|-- product.py      # Product class
+|-- supplier.py     # Supplier class
+|-- employee.py     # Employee class
+|-- inventory.py    # System integration
+|-- README.md
+|-- USER_GUIDE.md
+|-- csv 
+    |-- employee_role.csv   # Employee Name, password and roles
+    |-- products.csv        # Products information
+    |-- suppliers.csv       # Supplier information
+    |-- supplier_KPI.csv    # Supplier KPI definition
+
+# Documentation
+For detailed instructions, go to (Task1/USER_GUIDE.md) for more details

@@ -1,24 +1,25 @@
 product_id,product_name,price (hkd),supplier_name,stock_level,safety_stock,lead_time (days),ordering_cost,holding_cost,quantity_delivered,quantity_returned
-P001,Smartphone (mid-range),4500.0,SupplierA,120,20,7,3000,16,500,2
-P002,Laptop (basic),7500.0,SupplierB,80,15,10,3500,23,400,2
-P003,Laptop (gaming),12800.0,SupplierC,50,10,12,4000,31,300,2
-P004,Tablet,3200.0,SupplierA,100,20,8,2000,16,450,3
-P005,Smartwatch,2200.0,SupplierD,150,25,6,1000,12,600,4
-P006,Bluetooth Earbuds,900.0,SupplierE,200,30,5,600,8,700,5
-P007,Wireless Headphones,1800.0,SupplierE,180,25,6,800,12,650,4
-P008,Smart TV (40”),4500.0,SupplierF,70,10,12,3500,23,300,3
-P009,Smart TV (55”),7800.0,SupplierF,60,10,14,4500,31,250,3
-P010,Smart Speaker,1200.0,SupplierG,140,20,7,700,12,500,5
-P011,Gaming Console,4200.0,SupplierH,90,15,10,2500,23,350,3
-P012,External Hard Drive,800.0,SupplierI,160,25,6,500,8,600,6
-P013,SSD (1TB),1000.0,SupplierI,150,20,6,600,9,550,7
-P014,Router (Wi-Fi 6),1500.0,SupplierJ,130,20,7,700,12,500,8
-P015,Monitor (24”),1800.0,SupplierK,100,15,8,1200,16,400,4
-P016,Monitor (32”),3200.0,SupplierK,80,10,9,1800,20,300,3
-P017,Printer (Inkjet),1300.0,SupplierL,90,15,8,900,12,350,3
-P018,Printer (Laser),2200.0,SupplierL,70,10,9,1500,16,280,2
-P019,Power Bank (20000mAh),400.0,SupplierM,200,30,5,500,6,700,7
-P020,Drone (consumer),6500.0,SupplierN,40,8,12,4000,20,200,5
-P021,Silcon Phone Case,650.0,SuppllierL,30,5,5,150,5,30,3
-p022,Notebook Bag,590.0,SupplierL,30,3,10,99,10,40,5
-p023,:Phone Screen Guard,200.0,SupplierA,100,5,3,30,1,100,0
+P001,Smartphone (mid-range),4500.0,SupplierA,120,20,7,3000,16.0,500,2
+P002,Laptop (basic),7500.0,SupplierB,80,15,10,3500,23.0,400,2
+P003,Laptop (gaming),12800.0,SupplierC,50,10,12,4000,31.0,300,2
+P004,Tablet,3200.0,SupplierA,100,20,8,2000,16.0,450,3
+P005,Smartwatch,2200.0,SupplierD,150,25,6,1000,12.0,600,4
+P006,Bluetooth Earbuds,900.0,SupplierE,200,30,5,600,8.0,700,5
+P007,Wireless Headphones,1800.0,SupplierE,180,25,6,800,12.0,650,4
+P008,Smart TV (40”),4500.0,SupplierF,70,10,12,3500,23.0,300,3
+P009,Smart TV (55”),7800.0,SupplierF,60,10,14,4500,31.0,250,3
+P010,Smart Speaker,1200.0,SupplierG,140,20,7,700,12.0,500,5
+P011,Gaming Console,4200.0,SupplierH,90,15,10,2500,23.0,350,3
+P012,External Hard Drive,800.0,SupplierI,160,25,6,500,8.0,600,6
+P013,SSD (1TB),1000.0,SupplierI,150,20,6,600,9.0,550,7
+P014,Router (Wi-Fi 6),1500.0,SupplierJ,130,20,7,700,12.0,500,8
+P015,Monitor (24”),1800.0,SupplierK,100,15,8,1200,16.0,400,4
+P016,Monitor (32”),3200.0,SupplierK,80,10,9,1800,20.0,300,3
+P017,Printer (Inkjet),1300.0,SupplierL,90,15,8,900,12.0,350,3
+P018,Printer (Laser),2200.0,SupplierL,70,10,9,1500,16.0,280,2
+P019,Power Bank (20000mAh),400.0,SupplierM,200,30,5,500,6.0,700,7
+P020,Drone (consumer),6500.0,SupplierN,40,8,12,4000,20.0,200,5
+P021,Silcon Phone Case,650.0,SuppllierL,30,5,5,150,5.0,30,3
+p022,Notebook Bag,590.0,SupplierL,30,3,10,99,10.0,40,5
+p023,:Phone Screen Guard,200.0,SupplierA,100,5,3,30,1.0,100,0
+P024,AirPod 4,1499.0,Apple,100,10,7,1400,10.0,100,0
