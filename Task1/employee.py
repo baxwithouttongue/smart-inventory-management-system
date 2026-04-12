@@ -1,8 +1,8 @@
 # This is the class for defining all users who will use this system
 # Different roles have different levels of permission to access and control the data
 
-class User:                                                     # Defines the parent class and creates a blueprint for all user types
-    def __init__(self, employee_name, password, role):          # Creates a constructor method to initialize a new user object with name, password and rold
+class User:                                                     # Defines the parent class and initializes the attributes 
+    def __init__(self, employee_name, password, role):          # Creates a constructor method to initialize a new user object with name, password and role
         self.employee_name = employee_name                      # Stores and saves the user's name
         self.password = password                                # Stores and saves the user's password
         self.role = role                                        # Stores and saves the user's role

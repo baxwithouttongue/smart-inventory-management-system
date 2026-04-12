@@ -11,7 +11,7 @@ class Supplier:                                                         # Define
 
 class SupplierDirectory:                                                # Define a class called SupplierDirectory and creates a blueprint for managing multiple suppliers
     def __init__(self):                                                 # Creates a constructor methnod to initialize SupplierDirectory object
-        self.suppliers = {}                                             # Creates an empty dictioinary to store information about the supplier objects
+        self.suppliers = {}                                             # Creates an empty dictionary to store information about the supplier objects
     
     def add_supplier(self, supplier_name, contact, email, phone):       # Defines a method called add_supplier to add new supplier details to self.supplier dictionary
         self.suppliers[supplier_name] = {                               # Creates a dictionary called supplier_name to store contact, email and phone details

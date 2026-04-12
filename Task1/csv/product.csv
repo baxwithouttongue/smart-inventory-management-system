@@ -18,7 +18,7 @@ P016,Monitor (32”),3200.0,SupplierK,80,10,9,1800,20,300,3
 P017,Printer (Inkjet),1300.0,SupplierL,90,15,8,900,12,350,3
 P018,Printer (Laser),2200.0,SupplierL,70,10,9,1500,16,280,2
 P019,Power Bank (20000mAh),400.0,SupplierM,200,30,5,500,6,700,7
-P020,Drone (consumer),5500.0,SupplierN,40,8,12,4000,20,200,5
+P020,Drone (consumer),6500.0,SupplierN,40,8,12,4000,20,200,5
 P021,Silcon Phone Case,650.0,SuppllierL,30,5,5,150,5,30,3
 p022,Notebook Bag,590.0,SupplierL,30,3,10,99,10,40,5
 p023,:Phone Screen Guard,200.0,SupplierA,100,5,3,30,1,100,0
