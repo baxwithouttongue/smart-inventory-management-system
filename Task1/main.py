@@ -7,4 +7,4 @@ from inventory import SmartInventorySystem
 
 if __name__ == "__main__":
     system = SmartInventorySystem()     # Create an inventory management system instance
-    system.start_system()               # Run the system
+    system.start_system()               # Run the systempy
