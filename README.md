@@ -10,12 +10,13 @@ This is the OOP project containg two tasks:
 
 - Task 1: Smart Inventory Management System Task 1 Project
 
-SMART-INVENTORY-MANAGEMENT-SYSTEM
-Task1: 
+Task 1: 
 Python Files: main.py, product.py, supplier.py, employee.py, inventory.py, README.md, USER_GUIDE.md, Project_Report.pdf
 CSV Files: employee_role.csv, products.csv, suppliers.csv, supplier_KPI.csv
 
-Task2: 
+- Task 2: A New Data Structure (Heap) and A New Algorithm (Knapsack) 
+
+Task 2:
 Python Files: main.py, reorder_prioriy.py, budget_optimizer.py, product.py, supplier.py, employee.py, inventory.py, README.md, USER_GUIDE.md, Study_Report.pdf
 CSV Files: employee_role.csv, products.csv, suppliers.csv, supplier_KPI.csv
 
