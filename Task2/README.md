@@ -1,23 +1,67 @@
-# Task 2: Study Report on Data Structure and Algorithm
+# Smart Inventory Management System - Task 2
 
-This task contains a study report and supporting materials in the GitHub repository. This report demonstrates the implementation of new data structure, "max-heap", and a new algorithm, "heap sort". The diagrams and tables are also provided in the appendix.
 
-## Project Folder Contents
+# Overview
 
-- main.py
-- Study_Report.pdf
-- README.md
+This program applies a new data structure (Min-Heap) and a new algorithm (Knapsack) to solve real-life problems. 
 
-## User Guide
+Min-Heap Priority Queue: It identifies the smallest reorder point to find the urgent item to reorder.
 
-Open a terminal and go to the Task2 folder, then run
+Knapsack algorithm: It selects the items in order to maximize the profit within the limited budget.
 
-```
-cd Task2
+
+# System Requirements:
+
+- Python 3.7+
+- Pandas
+
+
+# Installation
+
+Installation Commands
+- Windows & Mac (using pip): pip install pandas
+
+
+# Quick usage:
+ 
+1. Navigate to the project folder:
+cd smart-inventory-management-system/Task2
+
+2. Run the program:
 python main.py
-```
 
-## Supporting Materials
+3. Login with sample name and passwords:
+No need to use login name or password
 
-- Introduction Video: 5 minutes
-- References: Listed in both report and GitHub repository
+4. Task 2 Menu
+Option: 1. View reorder priority (Heap)
+Option: 2. Opitmize budget (Knapsack)
+Option: 3. Exit
+
+
+# Project Folder Contents
+
+SMART-INVENTORY-MANAGEMENT-SYSTEM
+|
+Task2
+    |
+    |-- main.py         # Entry point
+    |-- reorder_priority.py # Reorder Priority by Min-Heap Application
+    |-- budget_optimzer.py  # Budget Optimizer by Knapsack Algorithm
+    |-- product.py      # Product class
+    |-- supplier.py     # Supplier class
+    |-- employee.py     # Employee class
+    |-- inventory.py    # System integration
+    |-- README.md       # Quick orientation
+    |-- USER_GUIDE.md   # User Manual
+    |-- Study_Report.pdf  # Study Report Task 2
+    |-- csv 
+        |-- employee_role.csv   # Employee Name, password and roles
+        |-- products.csv        # Products information
+        |-- suppliers.csv       # Supplier information
+        |-- supplier_KPI.csv    # Supplier KPI definition
+
+
+# Documentation
+
+For detailed instructions, go to (Task2/USER_GUIDE.md) for more details

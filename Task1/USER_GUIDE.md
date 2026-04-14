@@ -1,5 +1,6 @@
 # Task 1: Smart Inventory Management System
 
+
 # Overview
 
 About the Smart Inventory Management System, this program demonstrates the OOP-based inventory management system with employee authentication, product information, inventory tracking, supplier KPI evaluation.
@@ -12,11 +13,15 @@ Role-based permissions define different levels of permission according to the ro
 - Supervisor: add, view, exit
 - Assistant: view, exit
 
+
 # Requirements:
+
 - Python 3.8+
 - Pandas
 
+
 # Installation
+
 1. Copy or download the repository:
 https://github.com/baxwithouttongue/smart-inventory-management-system.git
 
@@ -58,7 +63,9 @@ Avaiable actions:
 view, add, update, or type 'exit'
 Choose action:
 
+
 # Available actions:
+
 1. View
 Choose action: view
 Enter Product ID to view or 'all' to view all: 
@@ -123,28 +130,31 @@ Supplier: Apple, Contact: N/A, Email: N/A
 Stock: 100, Safety Stock: 10, Lead Time: 7 days
 Delivered: 100, Returned: 0, KPI Score: 100.00%
 
-
 4. Exit
 Choose action: exit
 
 The program exits immediately.
 
+
 # Project Folder Contents
 
+SMART-INVENTORY-MANAGEMENT-SYSTEM
+|
 Task1
-|-- Project_Report.pdf
-|-- main.py         # Entry point
-|-- product.py      # Product class
-|-- supplier.py     # Supplier class
-|-- employee.py     # Employee class
-|-- inventory.py    # System integration
-|-- README.md
-|-- USER_GUIDE.md
-|-- csv 
-    |-- employee_role.csv   # Employee Name, password and roles
-    |-- products.csv        # Products information
-    |-- suppliers.csv       # Supplier information
-    |-- supplier_KPI.csv    # Supplier KPI definition
+    |
+    |-- main.py         # Entry point
+    |-- product.py      # Product class
+    |-- supplier.py     # Supplier class
+    |-- employee.py     # Employee class
+    |-- inventory.py    # System integration
+    |-- README.md       # Quick orientation
+    |-- USER_GUIDE.md   # User Manual
+    |-- Project_Report.pdf  # Project Report Task 1
+    |-- csv             # Data files
+        |-- employee_role.csv   # Employee Name, password and roles
+        |-- products.csv        # Products information
+        |-- suppliers.csv       # Supplier information
+        |-- supplier_KPI.csv    # Supplier KPI definition
 
 
 # Troubleshooting

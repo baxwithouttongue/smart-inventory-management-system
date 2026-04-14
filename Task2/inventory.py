@@ -7,12 +7,26 @@ from product import Product
 from employee import Manager, Supervisor, Assistant
 from supplier import Supplier, SupplierDirectory
 
-BASE_DIR = os.path.dirname(__file__)                        # Base directory where inventory.py lives
+BASE_DIR = os.path.dirname(__file__)                                # This is where the csv file located
 CSV_DIR = os.path.join(BASE_DIR, "csv")
+
+
+# *************************
+# **    Input Check   **
+# *************************
+
+def check_input(message, type_word):                                # Defines a funcion to avoid crashing the program due to invalid input
+    while True:                                                     # Creates a loop until a valid input is received
+        try:                                                        # Tries the following codes. If the errors happens, goes to except line
+            return type_word(input(message).strip())                # Displays the message, cleans spaces, converts input, returns the user input
+        except ValueError:                                          # Catches errors when the conversion fails
+            print:(f"Invalid input. Please enter a valid {type_word}")  # Displays an error message and asks input again
+
 
 # *****************************************************************************
 # **    Main inventory system which manages users, products and suppliers    ** 
 # *****************************************************************************
+
 
 class SmartInventorySystem:                                         # Defines the main system class. This is the brain of the inventory management system
     def __init__(self):                                             # Creates a constructor to initaliza the new inventory system instance
@@ -21,7 +35,7 @@ class SmartInventorySystem:                                         # Defines th
         self.users = {}                                             # Creates an empty user dictionary that will store User's identity for later authentication and permission checking
         self.products = []                                          # Creates an empty product list to store the product data
         self.suppliers = SupplierDirectory()                        # Creates supplier directory to manage supplier data
-        self.prepare_files ()                                       # Load all ata from employee, product and supplier files
+        self.prepare_files ()                                       # Loads all ata from employee, product and supplier files
 
     def prepare_files(self):                                        # Defines data loading method
 
@@ -29,7 +43,7 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Employees   **
         # *************************
 
-        employee_roles = pd.read_csv(os.path.join(CSV_DIR, "employee_role.csv"))       # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
+        employee_roles = pd.read_csv(os.path.join(CSV_DIR, "employee_role.csv"))    # Uses Pandas library to open employee_role.csv and converts the entire spreadsheet into DataFrame stored in the variable employee_role
         employee_roles.columns = employee_roles.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
         
         for index, row in employee_roles.iterrows():                # Creates a loop to read the employee_role.csv line by line
@@ -37,7 +51,7 @@ class SmartInventorySystem:                                         # Defines th
             employee_name = row['employee_name'].strip().lower()    # Gets the employee name, clean spaces and converts to lowercase
             pw = row['password'].strip()                            # Gets the password data and clean spaces
             
-            # Check the user employee role to determine the user type
+            # Checks the user employee role to determine the user type
             if role == 'Manager':                                                   # Checks for Manager role
                 self.users[employee_name] = Manager(employee_name, pw, role)        # Creates Manager object and stores in users dictionary
             elif role == 'Supervisor':                                              # Checks for Supervisor role
@@ -49,17 +63,17 @@ class SmartInventorySystem:                                         # Defines th
         # **    Load Products    **
         # *************************
 
-        product_list = pd.read_csv(os.path.join(CSV_DIR, "product.csv"))             # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
+        product_list = pd.read_csv(os.path.join(CSV_DIR, "product.csv"))            # Uses Pandas library to open product.csv and converts the entire spreadsheet into DataFrame stored in the variable product_list
         product_list.columns = product_list.columns.str.lower().str.strip()         # Cleans spaces and converts all column headers to lowercase
 
-        for index, row in product_list.iterrows():                  # Create a loop to read the product.csv line by line
+        for index, row in product_list.iterrows():                  # Creates a loop to read the product.csv line by line
             self.products.append(Product(row))                      # Creates Product object to convert every row inside csv to a Product and adds it to the product list
         
         # *************************
         # **    Load Suppliers   **
         # *************************
 
-        suppliers_info = pd.read_csv(os.path.join(CSV_DIR, "supplier.csv"))               # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
+        suppliers_info = pd.read_csv(os.path.join(CSV_DIR, "supplier.csv"))         # Uses Pandas library to open supplier.csv and converts the entire spreadsheet into DataFrame stored in the variable suppliers_info
         suppliers_info.columns = suppliers_info.columns.str.lower().str.strip()     # Cleans spaces and converts all column headers to lowercase
 
         for index, row in suppliers_info.iterrows():                # Creates a loop to read supplier.csv line by line
@@ -111,7 +125,7 @@ class SmartInventorySystem:                                         # Defines th
             if user.permission('update'):                       # Checks 'update' permission. If user has 'update' permission
                 actions.append('update')                        # Adds 'update' to the action list
             
-            print(f"{', '.join(actions)}, 'or type 'exit'")     # Displays available actions and join three actions with 'comma' to separate them, or tell the user to 'exit' the action
+            print(f"{', '.join(actions)}, or type 'exit'")     # Displays available actions and join three actions with 'comma' to separate them, or tell the user to 'exit' the action
             
             choice = input('Choose action: ').strip().lower()   # Gets user choice and clean spaces and converts to lower case
             if choice == 'exit':                                # If a user chooses 'exit', the system will be ended
@@ -171,7 +185,7 @@ class SmartInventorySystem:                                         # Defines th
         
         print(f'\nID: {product.id}, Name: {product.product_name}, Price: {product.price} HKD')                                                              # Displays the product's ID, name, price in Hong Kong Dollars
         print(f"Supplier: {product.supplier_name}, Contact: {supplier_info.get('contact_person','N/A')}, Email: {supplier_info.get('email','N/A')}")        # Uses .get and displays supplier details: name, contact person, and email
-        print(f'Stock: {product.stock}, Safety Stock: {product.safety_stock}, Lead Time: {product.lead_time} days')                                         # Displays inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
+        print(f'Stock: {product.stock}, Safety Stock: {product.safety_stock}, Average Daily Demand: {product.avg_daily_demand}, Lead Time: {product.lead_time} days')                                         # Displays inventory details: current stock, safety stock (buffer stock to avoid shortage) and lead time (days taken for restocking)
         print(f'Delivered: {product.delivered}, Returned: {product.returned}, KPI Score: {score:.2f}%{alert}')                                              # Displays delivery and return product quantity information
 
 
@@ -180,18 +194,19 @@ class SmartInventorySystem:                                         # Defines th
     # **********************************
     
     def add_new_product(self):                                      # Defines a method called add_new_product inside class
-        print("\n***** Add New Product *****")                  # Displays 'Add New Product' to tell the user for entering new product detail
-        pid = input('Product ID: ').strip()                     # Gets Product ID and cleans spaces
-        product_name = input('Product Name: ').strip()          # Gets Product Name and cleans spaces
-        price = float(input('Price (HKD): ').strip())           # Gets Price and cleans spaces
-        supplier_name = input('Supplier: ').strip()             # Gets Supplier and cleans spaces
-        stock = int(input('Stock level: ').strip())             # Gets Stock Level and cleans spaces
-        safety = int(input('Safety Stock level: ').strip())     # Gets Safety Stock Level and cleans spaces
-        lead = int(input('Lead Time: ').strip())                # Gets Lead Time and cleans spaces
-        order_cost = int(input('Ordering Cost: ').strip())      # Gets Ordering Cost and cleans spaces
-        hold_cost = int(input('Holding Cost: ').strip())        # Gets Holding Cost and cleans spaces
-        delivered = int(input('Quantity delivered: ').strip())  # Gets Quantity delivered and cleans spaces
-        returned = int(input('Quantity returned: ').strip())    # Gets Quantity returned and cleans spaces
+        print("\n***** Add New Product *****")                      # Displays 'Add New Product' to tell the user for entering new product detail
+        pid = check_input('Product ID: ', str).strip()              # Calls check_input function, gets Product ID, ensures string value, cleans spaces
+        product_name = check_input('Product Name: ', str).strip()   # Calls check_input function, gets Product Name, ensures string value, and cleans spaces
+        price = check_input('Price (HKD): ', float)                 # Calls check_input function, gets Price, and ensures number value
+        supplier_name = check_input('Supplier: ', str).strip()      # Calls check_input function, gets Supplier, ensures string value, and cleans spaces
+        stock = check_input('Stock level: ', int)                   # Calls check_input function, gets Stock Level, and ensures integer value
+        safety = check_input('Safety Stock level: ',int)            # Calls check_input function, gets Safety Stock Level, and ensures integer value
+        avg_daily_demand = check_input('Average Daily Demand: ', int) # Calls check_input function, gets average daily demand
+        lead = check_input('Lead Time (days): ',int)                # Calls check_input function, gets Lead Time, and ensures integer value
+        order_cost = check_input('Ordering Cost: ', float)          # Calls check_input function, gets Ordering Cost, and ensures number value
+        hold_cost = check_input('Holding Cost: ', float)            # Calls check_input function, gets Holding Cost, and ensures number value
+        delivered = check_input('Quantity delivered: ', int)        # Calls check_input function, gets Quantity delivered, and ensures number value
+        returned = check_input('Quantity returned: ', int)          # Calls check_input function, gets Quantity returned, and ensures number value
 
         # Create a dictionary for the new product called new_row
         new_row = {                                             # Create a container to prepare the data to be stored
@@ -201,6 +216,7 @@ class SmartInventorySystem:                                         # Defines th
             'supplier_name': supplier_name,                     # 'supplier_name'points to supplier_name, 
             'stock_level': stock,                               # 'stock_level' points to stock
             'safety_stock': safety,                             # 'safety_stock' points to safety
+            'avg_daily_demand': avg_daily_demand,               # 'avg_daily_demand' points to avg_daily_demand
             'lead_time (days)': lead,                           # 'lead_time (days)' points to lead
             'ordering_cost': order_cost,                        # 'ordering_cost' points to order_cost
             'holding_cost': hold_cost,                          # 'holding_cost' points to hold_cost
@@ -219,6 +235,7 @@ class SmartInventorySystem:                                         # Defines th
             'supplier_name': prod.supplier_name,
             'stock_level': prod.stock,
             'safety_stock': prod.safety_stock,
+            'avg_daily_demand': prod.avg_daily_demand,
             'lead_time (days)': prod.lead_time,
             'ordering_cost': prod.ordering_cost,
             'holding_cost': prod.holding_cost,
@@ -228,8 +245,8 @@ class SmartInventorySystem:                                         # Defines th
             for prod in self.products
             ]
         
-        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)        # Saves the product_data_list to product.csv
-        print('Product is added successfully!')                                     # Displays confirmation message
+        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)       # Saves the product_data_list to product.csv
+        print('Product is added successfully!')                                                         # Displays confirmation message
 
     # ******************************
     # **    Update Product List   **
@@ -251,34 +268,35 @@ class SmartInventorySystem:                                         # Defines th
             return                                              # Exits the method
 
         # Displays the editable field
-        print('Editable fields: product_name, price, supplier_name, stock_level, safety_stock, lead_time (days), ordering_cost, holding_cost, quantity_delivered, quantity_returned')
+        print('Editable fields: product_name, price, supplier_name, stock_level, safety_stock, avg_daily_demand, lead_time (days), ordering_cost, holding_cost, quantity_delivered, quantity_returned')
         field = input('Which field do you want to change? ').strip().lower()    # Gets field name, cleans spaces and converts to lower case
-        new_value = input('Enter new value: ').strip()                            # Gets new value and cleans spaces
 
         # Update the chosen fields
-        if field == 'product_name':                             # If the user choose product_name
-            product.product_name = new_value                    # Then update the product_name with the new value
-        elif field == 'price':                                  # If the user choose price
-            product.price = float(new_value)                    # Then update the price with the new value
-        elif field == 'supplier_name':                          # If the user supplier_name
-            product.supplier_name = new_value                   # Then update the supplier_name with the new value
-        elif field == 'stock_level':                            # If the user choose price
-            product.stock = int(new_value)                      # Then update the price with the new value
-        elif field == 'safety_stock':                           # If the user choose safety_stock
-            product.safety_stock = int(new_value)               # Then update the safety_stock with the new value
-        elif field == 'lead_time (days)':                       # If the user choose lead_time (days)
-            product.lead_time = int(new_value)                  # Then update the lead_time (days) with the new value
-        elif field == 'ordering_cost':                          # If the user choose ordering_cost
-            product.ordering_cost = int(new_value)              # Then update the ordering_cost with the new value
-        elif field == 'holding_cost':                           # If the user choose holding_cost
-            product.holding_cost = int(new_value)               # Then update the holding_cost with the new value
-        elif field == 'quantity_delivered':                     # If the user choose quantity_delivered
-            product.delivered = int(new_value)                  # Then update the quantity_delivered with the new value
-        elif field == 'quantity_returned':                      # If the user choose quantity_returned
-            product.returned = int(new_value)                   # Then update the quantity_returned with the new value
-        else:                                                   # If the user types the invalid field
-            print('Invalid field.')                             # Then print 'Invalid Field'
-            return                                              # Exits this function immediately
+        if field == 'product_name':                                                         # If the user choose product_name
+            product.product_name = check_input('Enter product name: ', str). strip()        # Calls check_input function, converts to string and cleans spaces 
+        elif field == 'price':                                                              # If the user choose price
+            product.price = check_input('Enter price: ', float)                             # Calls check_input function, converts to number value
+        elif field == 'supplier_name':                                                      # If the user supplier_name
+            product.supplier_name = check_input('Enter supplier name: ', str). strip()      # Calls check_input function, converts to string and cleans spaces
+        elif field == 'stock_level':                                                        # If the user choose price
+            product.stock = check_input('Enter stock level: ', int)                         # Calls check_input function, converts to integer value
+        elif field == 'safety_stock':                                                       # If the user choose safety_stock
+            product.safety_stock = check_input('Enter safety stock level: ', int)           # Calls check_input function, converts to integer value
+        elif field == 'avg_daily_demand':                                                   # If the user choose average daily demand
+            product.avg_daily_demand = check_input('Enter average daily demand: ', int)     # Calls check_input function, converts to integer
+        elif field == 'lead_time (days)':                                                   # If the user choose lead_time (days)
+            product.lead_time = check_input('Enter lead time (days): ', int)                # Calls check_input function, converts to integer value
+        elif field == 'ordering_cost':                                                      # If the user choose ordering_cost
+            product.ordering_cost = check_input('Enter ordering cost: ', float)             # Calls check_input function, converts to number value
+        elif field == 'holding_cost':                                                       # If the user choose holding_cost
+            product.holding_cost = check_input('Enter holding cost: ', float)               # Calls check_input function, converts to number value
+        elif field == 'quantity_delivered':                                                 # If the user choose quantity_delivered
+            product.delivered = check_input('Enter  quantity delivered: ', int)             # Calls check_input function, converts to number value
+        elif field == 'quantity_returned':                                                  # If the user choose quantity_returned
+            product.returned = check_input('Enter  quantity returned: ', int)               # Calls check_input function, converts to number value
+        else:                                                                               # If the user types the invalid field
+            print('Invalid field.')                                                         # Then print 'Invalid Field'
+            return                                                                          # Exits this function immediately
   
         # Creates a dictionary and save all products back to product.csv file
 
@@ -289,6 +307,7 @@ class SmartInventorySystem:                                         # Defines th
             'supplier_name': prod.supplier_name,
             'stock_level': prod.stock,
             'safety_stock': prod.safety_stock,
+            'avg_daily_demand': prod.avg_daily_demand,
             'lead_time (days)': prod.lead_time,
             'ordering_cost': prod.ordering_cost,
             'holding_cost': prod.holding_cost,
@@ -297,8 +316,8 @@ class SmartInventorySystem:                                         # Defines th
             }
             for prod in self.products
             ]
-        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)     # Saves the product_data_list to product.csv
-        print("Product updated successfully!")                                   # Displays confirmation message
+        pd.DataFrame(product_data_list).to_csv(os.path.join(CSV_DIR, "product.csv"), index=False)       # Saves the product_data_list to product.csv
+        print("Product updated successfully!")                                                          # Displays confirmation message
         
 
 

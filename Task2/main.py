@@ -13,7 +13,7 @@ def task2_menu(system):
         print('\n ***** Welcome to Task 2 Menu *****')      # Displays Welcome message
         print('Option: 1. View reorder priority (Heap)')    # Displays option 1: Use Heap to find the highest priority product to reorder
         print('Option: 2. Opitmize budget (Knapsack)')      # Displays option 2: Use Knapsack to maximize the profit within the budget
-        print('Option: 3. Back to main menu')               # Displays option 3: Exit Task 2 menu
+        print('Option: 3. Exit')                            # Displays option 3: Exit Task 2 menu
         choice = input('Enter your option:  ')              # Gets choice
 
         if choice == '1':                                   # Uses Heap to find the reorder priority
@@ -34,7 +34,17 @@ def task2_menu(system):
                 print(f"  {prod['id']} - Units: {prod['units']}, "
                       f"Unit cost: {prod['unit_cost']}, Unit profit: {prod['unit_profit']}, "
                       f"Total cost: {prod['total_cost']}, Total profit: {prod['total_profit']}")
+
+            # Calcuates the budget usage
+
+            total_cost_used = sum(prod['total_cost'] for prod in chosen_products)
+
+            remaining_budget = budget - total_cost_used
+
             print(f'\nTotal profit: {total_profit}')        # Displays the overall profit from all chosen products
+            print(f'Total budget used: {total_cost_used}')  # Displays the total budget used
+            print(f'Remaining budget: {remaining_budget}')   # Displays the remaining budget
+        
     
         elif choice == '3':                                 # Exits this section
             break
