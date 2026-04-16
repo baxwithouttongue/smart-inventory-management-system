@@ -25,5 +25,6 @@ p023,:Phone Screen Guard,200.0,SupplierA,100,5,10,3,30.0,1.0,100,0
 P024,AirPod 4,1499.0,SupplierL,100,10,10,7,1400.0,10.0,100,0
 P025,Portable Fan,99.0,SupplierA,100,10,10,7,20.0,5.0,100,5
 P025,Iphone Decorator,199.0,SupplierB,50,3,1,10,15.0,2.0,50,5
-P026,Cellphone bag,999.0,SupplierB,100,30,1,10,10.0,2.0,50,0
+P026,Cellphone bag,599.0,SupplierB,100,30,1,10,10.0,2.0,50,0
 P026,Smart Watch,599.0,SupplierB,10,2,1,10,150.0,10.0,10,0
+P027,Cable Adaptor,199.0,SupplierL,50,5,2,7,30.0,5.0,30,3
