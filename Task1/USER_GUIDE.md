@@ -149,7 +149,7 @@ Task1
     |-- inventory.py    # System integration
     |-- README.md       # Quick orientation
     |-- USER_GUIDE.md   # User Manual
-    |-- Project_Report.pdf  # Project Report Task 1
+    |-- Task_1_5-Minute_Video # Task 1 5-minute presentation video link
     |-- csv             # Data files
         |-- employee_role.csv   # Employee Name, password and roles
         |-- products.csv        # Products information

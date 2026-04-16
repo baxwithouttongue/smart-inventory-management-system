@@ -124,7 +124,7 @@ Task2
     |-- inventory.py    # System integration
     |-- README.md       # Quick orientation
     |-- USER_GUIDE.md   # User Manual
-    |-- Study_Report.pdf  # Study Report Task 2
+    |-- Task_2_5-Minute_Video # Task 2 5-minute presentation video link
     |-- csv 
         |-- employee_role.csv   # Employee Name, password and roles
         |-- products.csv        # Products information
